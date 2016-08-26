@@ -9,13 +9,6 @@
   transition: all 500ms ease-out 0s;
 }
 
-/*.fullPage-wp:after {
-    display: block;
-    content: ' ';
-    height: 0;
-    clear: both;
-}*/
-
 .fullPage-wp.fullPage-wp-h {
   display: flex;
 	flex-flow: row nowrap;

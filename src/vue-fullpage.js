@@ -29,7 +29,6 @@
         that.coverEle = this.el
       },
       update: function() {
-        var el = this.el
       }
     })
   }
@@ -73,17 +72,16 @@
       if (that.coverEle) {
         that.coverEle.style.display = 'block'
       }
-      
+
       that.width = that.parentEle.offsetWidth
       that.height = that.parentEle.offsetHeight
       for (var i = 0; i < that.pageEles.length; i++) {
         var pageEle = that.pageEles[i]
         pageEle.classList.add('fullPage-page')
-        // pageEle.style.width = that.width + 'px'
-        // pageEle.style.height = that.height + 'px'
+        pageEle.style.width = that.width + 'px'
+        pageEle.style.height = that.height + 'px'
         that.initEvent(pageEle)
       }
-      // that.coverEle.style.display = 'block'
     }, 0)
   }
 
