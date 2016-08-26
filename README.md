@@ -17,7 +17,7 @@ Vue.use(VueFullpage)
 
 ### app.vue
 
-模板部分：
+**模板部分：**
 在``container``容器加入``v-cove``指令防止闪烁
 在``page-wp``容器上加``v-page``指令，指令值是``vue-fullpage``的配置``option``
 ```html
@@ -39,7 +39,7 @@ Vue.use(VueFullpage)
   </div>
 </template>
 ```
-js部分：
+**js部分：**
 提供``vue-fullpage``的自定义指令
 ```js
 <script>
@@ -54,7 +54,7 @@ export default {
 }
 </script>
 ```
-css部分：
+**css部分：**
 ``page-container``的宽高就是滚动页面宽高
 如下设置可使滚动页面充满全屏
 ```
@@ -74,3 +74,8 @@ meta头部分：
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 ```
+
+## demo
+
+地址：
+[http://vue.wendaosanshou.top/vue_fullpage_demo/](http://vue.wendaosanshou.top/vue_fullpage_demo/)

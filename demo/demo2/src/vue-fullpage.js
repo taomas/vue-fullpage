@@ -63,7 +63,7 @@
 
     that.parentEle = that.el.parentNode;
     that.parentEle.classList.add('fullPage-container');
-    
+
     that.pageEles = that.el.children;
     that.total = that.pageEles.length;
 
@@ -95,13 +95,11 @@
       var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
       var der = sub > 0 ? -1 : 1;
       that.curIndex += der
-      console.log(sub, that.curIndex);
       if (that.curIndex >= 0 && that.curIndex < that.total) {
         that.moveTo(that.curIndex)
       } else {
         that.curIndex = that.curIndex < 0 ? 0 : that.total - 1
       }
-      console.log(that.curIndex);
     })
   }
 
