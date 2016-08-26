@@ -62,8 +62,9 @@
     that.el.classList.add('fullPage-wp');
 
     that.parentEle = that.el.parentNode;
+    that.parentEle.classList.add('fullPage-container');
+    
     that.pageEles = that.el.children;
-
     that.total = that.pageEles.length;
 
     window.setTimeout(function() {

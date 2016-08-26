@@ -46,17 +46,11 @@ body {
 }
 
 .page-container {
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 400px;
   height: 500px;
-  overflow: hidden;
 }
 
 .page {
-  width: 100%;
-  height: 100%;
   font-size: 20px;
   text-align: center;
   line-height: 50px;

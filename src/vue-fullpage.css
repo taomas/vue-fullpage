@@ -1,3 +1,7 @@
+.fullPage-container {
+	overflow: hidden;
+}
+
 .fullPage-wp {
 	display: flex;
 	flex-flow: column nowrap;
