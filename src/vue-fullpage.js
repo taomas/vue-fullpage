@@ -14,29 +14,10 @@
   }
 
   fullpage.install = function(Vue) {
-    var _this = this
+    var that = this
     Vue.directive('page', {
       bind: function() {
-        var that = this
-
-        _this.el = this.el
-
         fullpage.init(this.arg, this.el)
-        setTimeout(function() {
-          _this.width = _this.parentEle.offsetWidth
-          _this.height = _this.parentEle.offsetHeight
-					_this.curIndex = 0
-          for (var i = 0; i < _this.childrens.length; i++) {
-            if (i === 0) {
-              _this.childrens[i].classList.add('active')
-            }
-            _this.childrens[i].classList.add('fullPage-page')
-						_this.childrens[i].style.cssText += (';width: ' +  _this.width + 'px;height:' + _this.height +'px;')
-            _this.initEvent(_this.childrens[i])
-          }
-          console.log(_this.width, _this.height)
-        }, 0)
-
       },
       update: function(value) {
         console.log(this.arg, value)
@@ -54,7 +35,7 @@
     }
 
     var that = this
-    that.curIndex = -1;
+    that.curIndex = 0;
     that.o = o;
 
     that.startY = 0;
@@ -65,6 +46,17 @@
 
     that.parentEle = that.el.parentNode;
     that.childrens = that.el.children;
+
+    that.total =  that.childrens.length;
+
+    setTimeout(function () {
+      that.width = that.parentEle.offsetWidth
+      that.height = that.parentEle.offsetHeight
+      for (var i = 0; i < that.childrens.length; i++) {
+        that.childrens[i].classList.add('fullPage-page')
+        that.initEvent(that.childrens[i])
+      }
+    }, 0)
   }
 
 	fullpage.move = function(dist) {
@@ -75,23 +67,28 @@
 	}
 
   fullpage.initEvent = function(el) {
-    var _this = this
+    var that = this
     el.addEventListener('touchstart', function(e) {
-      _this.startX = e.targetTouches[0].pageX;
-      _this.startY = e.targetTouches[0].pageY;
+      that.startX = e.targetTouches[0].pageX;
+      that.startY = e.targetTouches[0].pageY;
     })
     el.addEventListener('touchend', function(e) {
-      var sub = (e.changedTouches[0].pageY - _this.startY) / _this.height;
+      var sub = (e.changedTouches[0].pageY - that.startY) / that.height;
 			var der = sub > 0 ? -1 : 1;
-			_this.curIndex += der
-      _this.moveTo(_this.curIndex);
+			that.curIndex += der
+
+      if (that.curIndex >=0 && that.curIndex < that.total) {
+        that.moveTo(that.curIndex)
+      } else {
+        that.curIndex = that.curIndex < 0 ? 0 : that.total - 1
+      }
+      console.log(that.curIndex);
     })
   }
 
 	fullpage.moveTo = function(curIndex) {
-		var dist = curIndex * this.height
-		this.move(-dist)
-		console.log(dist)
+		var dist = curIndex * (-this.height)
+		this.move(dist)
 	}
 
   if (typeof exports == "object") {

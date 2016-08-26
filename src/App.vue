@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div class="page-container">
-      <div v-page="123" class="page-wp">
-        <div class="page1">
+      <div v-page="123" class="fullPage-wp">
+        <div class="page page1">
           1
         </div>
-        <div class="page2">
+        <div class="page page2">
           2
         </div>
-        <div class="page3">
+        <div class="page page3">
           3
         </div>
       </div>
@@ -48,21 +48,29 @@ body {
 }
 
 .fullPage-wp {
+  width: 100%;
+  height: 100%;
+  transform: translate3d(0,0,0);
+  transition: all 500ms ease-out 0s;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  text-align: center;
+  line-height: 50px;
+  color: #000;
+}
+
+.fullPage-wp {
   transform: translate3d(0,0,0);
   transition: all 500ms ease-out 0s;
 }
 
 .fullPage-page {
-  font-size: 20px;
-  text-align: center;
-  line-height: 50px;
-  color: #000;
+  display: block;
   overflow: hidden;
-  transition: all 500ms ease-out 0s;
-}
-
-.fullPage-wp .active {
-  height: 100%;
 }
 
 .page1 {
