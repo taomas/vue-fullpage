@@ -18,8 +18,8 @@ Vue.use(VueFullpage)
 ### app.vue
 
 **模板部分：**
-在``container``容器加入``v-cove``指令防止闪烁
-在``page-wp``容器上加``v-page``指令，指令值是``vue-fullpage``的配置``option``
+在``page-container``容器加入``v-cover``指令防止闪烁
+在``page-wp``容器上加``v-page``指令，指令值是``fullpage``的配置
 ```html
 <template>
   <div id="app">
@@ -40,7 +40,7 @@ Vue.use(VueFullpage)
 </template>
 ```
 **js部分：**
-提供``vue-fullpage``的自定义指令
+提供``vue-fullpage``的自定义指令  
 ```js
 <script>
 export default {
@@ -55,7 +55,7 @@ export default {
 </script>
 ```
 **css部分：**
-``page-container``的宽高就是滚动页面宽高
+``page-container``需要固定宽度和高度，``fullpage``会使用父元素的宽度和高度。  
 如下设置可使滚动页面充满全屏
 ```
 <style>
@@ -70,7 +70,7 @@ export default {
 ```
 
 meta头部分：
-手机页面需要加入对应的meta头
+手机页面需要加入对应的meta头  
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 ```
