@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue-fullpage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<style type="text/css">
+		html, body {
+			margin: 0;
+			padding: 0;
+		}
+		.page-container {
+		  width: 400px;
+		  height: 500px;
+		}
+
+		.page {
+		  font-size: 20px;
+		  text-align: center;
+		  line-height: 50px;
+		  color: #000;
+		}
+
+		.page1 {
+		  background: rgb(75, 191, 195);
+		}
+
+		.page2 {
+		  background: rgb(123, 170, 190);
+		}
+
+		.page3 {
+		  background: rgb(27, 188, 155);
+		}
+		</style>
+		<link rel="stylesheet" href="../src/vue-fullpage.css" />
+		<script src="http://cdn.bootcss.com/vue/1.0.12/vue.js"></script>
+		<script src="../src/vue-fullpage.js"></script>
+  </head>
+  <body>
+		<div id="app">
+			<div class="page-container" v-cover>
+				<div v-page="opts" class="page-wp">
+					<div class="page page1">
+						1
+					</div>
+					<div class="page page2">
+						2
+					</div>
+					<div class="page page3">
+						3
+					</div>
+				</div>
+			</div>
+		</div>
+  </body>
+	<script>
+		window.onload = function () {
+			Vue.use(VueFullpage)
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					name: 'vue',
+					opts: {
+						dir: 'v'
+					}
+				}
+			})
+		}
+	</script>
+</html>
