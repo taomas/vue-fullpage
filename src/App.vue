@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div class="page-container">
-      <div v-page="123" class="fullPage-wp">
+    <div class="page-container" v-cover>
+      <div v-page="opts" class="fullPage-wp">
         <div class="page page1">
           1
         </div>
@@ -20,6 +20,13 @@
 import Hello from './components/Hello'
 
 export default {
+  data () {
+    return {
+      opts: {
+        dir: 'v'
+      }
+    }
+  },
   components: {
     Hello
   }
@@ -42,16 +49,9 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 500px;
   overflow: hidden;
-}
-
-.fullPage-wp {
-  width: 100%;
-  height: 100%;
-  transform: translate3d(0,0,0);
-  transition: all 500ms ease-out 0s;
 }
 
 .page {
@@ -61,16 +61,6 @@ body {
   text-align: center;
   line-height: 50px;
   color: #000;
-}
-
-.fullPage-wp {
-  transform: translate3d(0,0,0);
-  transition: all 500ms ease-out 0s;
-}
-
-.fullPage-page {
-  display: block;
-  overflow: hidden;
 }
 
 .page1 {

@@ -17,16 +17,25 @@
     var that = this
     Vue.directive('page', {
       bind: function() {
-        fullpage.init(this.arg, this.el)
+        that.init(this.el)
       },
       update: function(value) {
-        console.log(this.arg, value)
-        console.log(this)
+        that.updateOpts(value)
+      }
+    })
+    Vue.directive('cover', {
+      bind: function() {
+        this.el.style.display = 'none'
+        that.coverEle = this.el
+      },
+      update: function() {
+        var el = this.el
       }
     })
   }
 
-  fullpage.init = function (option, el) {
+  fullpage.updateOpts = function (option) {
+    var that = this
     var o = option ? option : {}
     for (var key in opt) {
       if(!o.hasOwnProperty(key)) {
@@ -34,9 +43,20 @@
       }
     }
 
+    that.o = o;
+    console.log(o['dir'])
+    that.updatePageEle()
+  }
+
+  fullpage.updatePageEle = function () {
+    if (this.o.dir !== 'v') {
+      this.el.classList.add('fullPage-wp-h')
+    }
+  }
+
+  fullpage.init = function (el) {
     var that = this
     that.curIndex = 0;
-    that.o = o;
 
     that.startY = 0;
     that.movingFlag = false;
@@ -45,23 +65,36 @@
     that.el.classList.add('fullPage-wp');
 
     that.parentEle = that.el.parentNode;
-    that.childrens = that.el.children;
+    that.pageEles = that.el.children;
 
-    that.total =  that.childrens.length;
+    that.total =  that.pageEles.length;
 
-    setTimeout(function () {
+    window.setTimeout(function () {
+      if (that.coverEle) {
+        that.coverEle.style.display = 'block'
+      }
+      
       that.width = that.parentEle.offsetWidth
       that.height = that.parentEle.offsetHeight
-      for (var i = 0; i < that.childrens.length; i++) {
-        that.childrens[i].classList.add('fullPage-page')
-        that.initEvent(that.childrens[i])
+      for (var i = 0; i < that.pageEles.length; i++) {
+        var pageEle = that.pageEles[i]
+        pageEle.classList.add('fullPage-page')
+        // pageEle.style.width = that.width + 'px'
+        // pageEle.style.height = that.height + 'px'
+        that.initEvent(pageEle)
       }
+      // that.coverEle.style.display = 'block'
     }, 0)
   }
 
 	fullpage.move = function(dist) {
-		var xPx = '0px' , yPx = '0px';
-		yPx = dist + 'px';
+		var xPx = '0px',
+      yPx = '0px';
+    if (this.o.dir === 'v') {
+      yPx = dist + 'px';
+    } else {
+      xPx = dist + 'px'
+    }
 		this.el.style.cssText += (';-webkit-transform : translate3d(' + xPx + ', ' + yPx + ', 0px);' +
 														'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);');
 	}
@@ -73,10 +106,11 @@
       that.startY = e.targetTouches[0].pageY;
     })
     el.addEventListener('touchend', function(e) {
-      var sub = (e.changedTouches[0].pageY - that.startY) / that.height;
+      var dir = that.o.dir;
+      var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
 			var der = sub > 0 ? -1 : 1;
 			that.curIndex += der
-
+      console.log(sub, that.curIndex);
       if (that.curIndex >=0 && that.curIndex < that.total) {
         that.moveTo(that.curIndex)
       } else {
@@ -87,7 +121,7 @@
   }
 
 	fullpage.moveTo = function(curIndex) {
-		var dist = curIndex * (-this.height)
+		var dist = this.o.dir === 'v' ? curIndex * (-this.height) : curIndex * (-this.width)
 		this.move(dist)
 	}
 
