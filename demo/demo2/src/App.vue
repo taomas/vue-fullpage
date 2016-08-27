@@ -24,7 +24,16 @@ export default {
     return {
       opts: {
         dir: 'v',
-        loop: false
+        loop: true,
+        beforeChange: function (data) {
+          console.log('before', data)
+        },
+        change: function (cur, next) {
+          console.log('change', cur, next)
+        },
+        afterChange: function (cur, next) {
+          console.log('after', cur, next)
+        }
       }
     }
   },
