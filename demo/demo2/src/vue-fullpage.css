@@ -1,5 +1,6 @@
 .fullPage-container {
 	overflow: hidden;
+	transition: all 100ms ease-out 0s;
 }
 
 .fullPage-wp {

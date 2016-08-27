@@ -23,7 +23,7 @@ export default {
   data () {
     return {
       opts: {
-        dir: 'v'
+        dir: 'h'
       }
     }
   },

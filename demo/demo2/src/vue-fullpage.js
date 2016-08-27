@@ -25,7 +25,7 @@
     })
     Vue.directive('cover', {
       bind: function() {
-        this.el.style.display = 'none'
+        this.el.style.opacity = '0'
         that.coverEle = this.el
       },
       update: function() {}
@@ -69,7 +69,7 @@
 
     window.setTimeout(function() {
       if (that.coverEle) {
-        that.coverEle.style.display = 'block'
+        that.coverEle.style.opacity = '1'
       }
 
       that.width = that.parentEle.offsetWidth
