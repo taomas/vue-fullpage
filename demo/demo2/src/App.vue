@@ -23,7 +23,8 @@ export default {
   data () {
     return {
       opts: {
-        dir: 'h'
+        dir: 'v',
+        loop: false
       }
     }
   },
