@@ -6,6 +6,9 @@
           1
         </div>
         <div class="page page2">
+          <div class="part1" v-animate="'fade'">
+
+          </div>
           2
         </div>
         <div class="page page3">
@@ -73,6 +76,17 @@ export default {
 
 .page3 {
   background: rgb(27, 188, 155);
+}
+
+.part1 {
+  width: 100px;
+  height: 100px;
+  background: #ccc;
+}
+
+.animate-fade {
+  transition: all 0.3s;
+  transform: translateX(100px);
 }
 
 </style>

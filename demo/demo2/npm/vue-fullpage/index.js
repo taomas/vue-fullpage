@@ -17,14 +17,16 @@
   }
 
   fullpage.install = function(Vue) {
-    var that = this
+    var that = fullpage
     Vue.directive('page', {
       bind: function() {
-        that.init(this.el)
-        // that.applyFunc()
+        that.init.call(this)
       },
       update: function(value) {
         that.updateOpts(value)
+      },
+      unbind: function() {
+
       }
     })
     Vue.directive('cover', {
@@ -32,12 +34,51 @@
         this.el.style.opacity = '0'
         that.coverEle = this.el
       },
-      update: function() {}
+      update: function() {},
+      unbind: function() {
+
+      }
+    })
+    Vue.directive('animate', {
+      bind: function() {
+
+      },
+      update: function(value) {
+        that.initAnimate.call(this, value)
+      },
+      unbind: function() {
+
+      }
+    })
+  }
+
+  fullpage.initAnimate = function (value) {
+    var that = fullpage
+    var el = this.el
+    this.vm.$on('evtAfterChange', function (ctx) {
+      var curPage = +el.parentNode.getAttribute('data-id')
+      if (ctx.nextIndex === curPage) {
+        that.addAnimate(el, value)
+      } else {
+        that.removeAnimate(el, value)
+      }
+    })
+  }
+
+  fullpage.addAnimate = function (el, animate) {
+    el.classList.add('animate-' + animate)
+  }
+
+  fullpage.removeAnimate = function (el, animate) {
+    el.classList.forEach(function (item) {
+      if (item.indexOf('animate-') !== -1) {
+        el.classList.remove(item)
+      }
     })
   }
 
   fullpage.updateOpts = function(option) {
-    var that = this
+    var that = fullpage
     var o = option ? option : {}
     for (var key in opt) {
       if (!o.hasOwnProperty(key)) {
@@ -55,15 +96,17 @@
     }
   }
 
-  fullpage.init = function(el) {
-    var that = this
+  fullpage.init = function() {
+    var that = fullpage
     that.updateOpts()
+
+    that.dirEl = this
     that.curIndex = 0;
 
     that.startY = 0;
     that.o.movingFlag = false;
 
-    that.el = el;
+    that.el = this.el;
     that.el.classList.add('fullPage-wp');
 
     that.parentEle = that.el.parentNode;
@@ -82,6 +125,7 @@
       for (var i = 0; i < that.pageEles.length; i++) {
         var pageEle = that.pageEles[i]
         pageEle.classList.add('fullPage-page')
+        pageEle.setAttribute('data-id', i)
         pageEle.style.width = that.width + 'px'
         pageEle.style.height = that.height + 'px'
         that.initEvent(pageEle)
@@ -90,7 +134,7 @@
   }
 
   fullpage.initEvent = function(el) {
-    var that = this
+    var that = fullpage
     el.addEventListener('touchstart', function(e) {
       if (that.o.movingFlag) {
         return false;
@@ -123,11 +167,13 @@
   }
 
   fullpage.moveTo = function(curIndex) {
-    var that = this
+    var that = fullpage
+    var vm = that.dirEl.vm
     var dist = that.o.dir === 'v' ? (curIndex) * (-that.height) : curIndex * (-that.width)
     that.nextIndex = curIndex;
     that.o.movingFlag = true
     var flag = that.o.beforeChange(that.prevIndex + 1, that.nextIndex + 1)
+
     // beforeChange中返回false则阻止滚屏发生
     if (flag === false) {
       return false;
@@ -138,6 +184,7 @@
     window.setTimeout(function () {
       that.o.movingFlag = false
       that.o.afterChange(that.prevIndex + 1, that.nextIndex + 1)
+      vm.$emit('evtAfterChange', {prevIndex: that.prevIndex, nextIndex: that.nextIndex})
     }, that.o.duration)
   }
 
