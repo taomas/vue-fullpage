@@ -1,0 +1,25 @@
+{
+  "name": "vue-fullpage",
+  "version": "1.0.4",
+  "description": "a single page scroll plugin for vue.js ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wendaosanshou/vue-fullpage.git"
+  },
+  "keywords": [
+    "vue",
+    "scroll",
+    "single",
+    "page"
+  ],
+  "author": "wendaosanshou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wendaosanshou/vue-fullpage/issues"
+  },
+  "homepage": "https://github.com/wendaosanshou/vue-fullpage#readme"
+}

@@ -11,30 +11,28 @@
 npm install vue-fullpage --save
 ```
 ---
-## 引用
+#### commonjs
 
-**需在amd环境下引入**
-
-```
+```js
 import VueFullpage from 'vue-fullpage'
 Vue.use(VueFullpage)
 ```
 或
-```
-var varFullpage = require('vue-fullpage')
-Vue.use(varFullpage)
+```js
+var vueFullpage = require('vue-fullpage')
+Vue.use(vueFullpage)
 ```
 ---
 ## 快速上手
 
-### main.js
-在main.js需要引入该插件的css和js文件(*需在amd环境下引入*)
+#### main.js
+在main.js需要引入该插件的css和js文件
 ```js
 import VueFullpage from 'vue-fullpage'
 Vue.use(VueFullpage)
 ```
 
-### app.vue
+#### app.vue
 
 **模板部分：**
 在``page-container``容器加入``v-cover``指令防止闪烁

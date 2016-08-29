@@ -1,5 +1,5 @@
 {
-  "name": "vue-fullpage",
+  "name": "vue-fullpage-demo",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "liutao <947809647@qq.com>",
@@ -15,6 +15,7 @@
     "babel-runtime": "^6.0.0",
     "normalize.css": "^4.2.0",
     "vue": "^1.0.21",
+    "vue-fullpage": "^1.0.4",
     "vue-page": "^1.0.1"
   },
   "devDependencies": {

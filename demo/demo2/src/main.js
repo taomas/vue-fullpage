@@ -2,7 +2,7 @@
 // import './vue-fullpage.css'
 import Vue from 'vue'
 import App from './App'
-import VueFullpage from './vue-fullpage.js'
+import VueFullpage from 'vue-fullpage'
 Vue.use(VueFullpage)
 /* eslint-disable no-new */
 new Vue({
