@@ -4,7 +4,11 @@
 }
 
 .fullPage-wp {
-	display: flex;
+	display: -webkit-box;
+  display: -moz-box;
+  display:-webkit-flex;
+  display: -ms-flexbox;
+  display:flex;
 	flex-flow: column nowrap;
 	justify-content: flex-start;
 	align-items: center;
@@ -15,7 +19,11 @@
 }
 
 .fullPage-wp.fullPage-wp-h {
-  display: flex;
+	display: -webkit-box;
+  display: -moz-box;
+  display:-webkit-flex;
+  display: -ms-flexbox;
+  display:flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
 	align-items: center;
