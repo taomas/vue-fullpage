@@ -5,6 +5,9 @@
 ## 功能概述
 可实现移动端的单页滚动效果，支持横向滚动和纵向滚动
 
+## 兼容性
+目前兼容性较差，请勿用于生产环境使用
+
 ## 安装
 
 ```
@@ -23,6 +26,11 @@ var vueFullpage = require('vue-fullpage')
 Vue.use(vueFullpage)
 ```
 ---
+
+## 文档
+[api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api.md)
+---
+
 ## 快速上手
 
 #### main.js
@@ -99,7 +107,9 @@ export default {
 ## demo
 
 地址：
+> 请使用chrome的手机模拟器访问
+
 [http://vue.wendaosanshou.top/vue_fullpage_demo/](http://vue.wendaosanshou.top/vue_fullpage_demo/)
 
-感谢：
+## 感谢
 代码参考 **颜海镜** 大神的项目：[zepto.fullpage.js](https://github.com/yanhaijing/zepto.fullpage)
