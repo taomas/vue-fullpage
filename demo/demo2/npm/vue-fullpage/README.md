@@ -5,6 +5,9 @@
 ## 功能概述
 可实现移动端的单页滚动效果，支持横向滚动和纵向滚动
 
+## 兼容性
+目前兼容性较差，请勿用于生产环境使用
+
 ## 安装
 
 ```
@@ -23,6 +26,11 @@ var vueFullpage = require('vue-fullpage')
 Vue.use(vueFullpage)
 ```
 ---
+
+## 文档
+[api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api.md)
+---
+
 ## 快速上手
 
 #### main.js
@@ -38,23 +46,30 @@ Vue.use(VueFullpage)
 在``page-container``容器加入``v-cover``指令防止闪烁
 在``page-wp``容器上加``v-page``指令，指令值是``fullpage``的配置
 ```html
-<template>
-  <div id="app">
-    <div class="page-container" v-cover>
-      <div v-page="opts" class="page-wp">
-        <div class="page page1">
-          1
-        </div>
-        <div class="page page2">
-          2
-        </div>
-        <div class="page page3">
-          3
-        </div>
-      </div>
+<div class="page-container">
+  <div v-page="opts" class="page-wp">
+    <div class="page page1">
+      <p class="part part1" v-animate="'slideIn'">
+        vue-fullpage
+      </p>
+    </div>
+    <div class="page page2">
+      <p class="part part2" v-animate="'slideIn'">
+        vue-fullpage
+      </p>
+    </div>
+    <div class="page page3">
+      <p class="part part3" v-animate="'slideIn'">
+        vue-fullpage
+      </p>
+    </div>
+    <div class="page page4">
+      <p class="part part4" v-animate="'fadeIn'">
+        vue-fullpage
+      </p>
     </div>
   </div>
-</template>
+</div>
 ```
 **js部分：**
 提供``vue-fullpage``的自定义指令  
@@ -64,16 +79,15 @@ export default {
   data () {
     return {
       opts: {
+        start: 0,
         dir: 'v',
-        loop: true,
-        beforeChange: function (cur) {
-          console.log('before', cur)
+        loop: false,
+        duration: 500,
+        beforeChange: function (prev, next) {
+          console.log('before', prev, next)
         },
-        change: function (cur, next) {
-          console.log('change', cur, next)
-        },
-        afterChange: function (cur, next) {
-          console.log('after', cur, next)
+        afterChange: function (prev, next) {
+          console.log('after', prev, next)
         }
       }
     }
@@ -99,4 +113,9 @@ export default {
 ## demo
 
 地址：
+> 请使用chrome的手机模拟器访问
+
 [http://vue.wendaosanshou.top/vue_fullpage_demo/](http://vue.wendaosanshou.top/vue_fullpage_demo/)
+
+## 感谢
+代码参考 **颜海镜** 大神的项目：[zepto.fullpage.js](https://github.com/yanhaijing/zepto.fullpage)

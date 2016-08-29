@@ -46,23 +46,30 @@ Vue.use(VueFullpage)
 在``page-container``容器加入``v-cover``指令防止闪烁
 在``page-wp``容器上加``v-page``指令，指令值是``fullpage``的配置
 ```html
-<template>
-  <div id="app">
-    <div class="page-container" v-cover>
-      <div v-page="opts" class="page-wp">
-        <div class="page page1">
-          1
-        </div>
-        <div class="page page2">
-          2
-        </div>
-        <div class="page page3">
-          3
-        </div>
-      </div>
+<div class="page-container">
+  <div v-page="opts" class="page-wp">
+    <div class="page page1">
+      <p class="part part1" v-animate="'slideIn'">
+        vue-fullpage
+      </p>
+    </div>
+    <div class="page page2">
+      <p class="part part2" v-animate="'slideIn'">
+        vue-fullpage
+      </p>
+    </div>
+    <div class="page page3">
+      <p class="part part3" v-animate="'slideIn'">
+        vue-fullpage
+      </p>
+    </div>
+    <div class="page page4">
+      <p class="part part4" v-animate="'fadeIn'">
+        vue-fullpage
+      </p>
     </div>
   </div>
-</template>
+</div>
 ```
 **js部分：**
 提供``vue-fullpage``的自定义指令  
@@ -72,16 +79,15 @@ export default {
   data () {
     return {
       opts: {
+        start: 0,
         dir: 'v',
-        loop: true,
-        beforeChange: function (cur) {
-          console.log('before', cur)
+        loop: false,
+        duration: 500,
+        beforeChange: function (prev, next) {
+          console.log('before', prev, next)
         },
-        change: function (cur, next) {
-          console.log('change', cur, next)
-        },
-        afterChange: function (cur, next) {
-          console.log('after', cur, next)
+        afterChange: function (prev, next) {
+          console.log('after', prev, next)
         }
       }
     }
