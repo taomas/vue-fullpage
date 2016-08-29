@@ -52,7 +52,17 @@ export default {
   data () {
     return {
       opts: {
-        dir: 'v'
+        dir: 'v',
+        loop: true,
+        beforeChange: function (cur) {
+          console.log('before', cur)
+        },
+        change: function (cur, next) {
+          console.log('change', cur, next)
+        },
+        afterChange: function (cur, next) {
+          console.log('after', cur, next)
+        }
       }
     }
   }
@@ -72,12 +82,6 @@ export default {
   height: 100%;
 }
 </style>
-```
-
-meta头部分：
-手机页面需要加入对应的meta头  
-```html
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 ```
 
 ## demo
