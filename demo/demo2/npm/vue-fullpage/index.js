@@ -20,10 +20,9 @@
     var that = fullpage
     Vue.directive('page', {
       bind: function() {
-        that.init.call(this)
       },
       update: function(value) {
-        that.updateOpts(value)
+        that.init.call(this, value)
       },
       unbind: function() {
 
@@ -85,7 +84,6 @@
         o[key] = opt[key]
       }
     }
-
     that.o = o;
     that.updatePageEle()
   }
@@ -96,12 +94,12 @@
     }
   }
 
-  fullpage.init = function() {
+  fullpage.init = function(value) {
     var that = fullpage
-    that.updateOpts()
+    that.updateOpts(value)
 
     that.dirEl = this
-    that.curIndex = 0;
+    that.curIndex = that.o.start;
 
     that.startY = 0;
     that.o.movingFlag = false;
@@ -130,11 +128,13 @@
         pageEle.style.height = that.height + 'px'
         that.initEvent(pageEle)
       }
+      that.moveTo(that.curIndex, false)
     }, 0)
   }
 
   fullpage.initEvent = function(el) {
     var that = fullpage
+    that.prevIndex = that.curIndex
     el.addEventListener('touchstart', function(e) {
       if (that.o.movingFlag) {
         return false;
@@ -150,15 +150,14 @@
       var dir = that.o.dir;
       var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
       var der = sub > that.o.der ? -1 : 1;
-      that.prevIndex = that.curIndex
       that.curIndex += der
 
       if (that.curIndex >= 0 && that.curIndex < that.total) {
-        that.moveTo(that.curIndex)
+        that.moveTo(that.curIndex, true)
       } else {
         if (!!that.o.loop) {
           that.curIndex = that.curIndex < 0 ? that.total - 1 : 0
-          that.moveTo(that.curIndex)
+          that.moveTo(that.curIndex, true)
         } else {
           that.curIndex = that.curIndex < 0 ? 0 : that.total - 1
         }
@@ -166,24 +165,32 @@
     })
   }
 
-  fullpage.moveTo = function(curIndex) {
+  fullpage.moveTo = function(curIndex, anim) {
+    console.log(curIndex)
     var that = fullpage
     var vm = that.dirEl.vm
     var dist = that.o.dir === 'v' ? (curIndex) * (-that.height) : curIndex * (-that.width)
     that.nextIndex = curIndex;
     that.o.movingFlag = true
-    var flag = that.o.beforeChange(that.prevIndex + 1, that.nextIndex + 1)
+    var flag = that.o.beforeChange(that.prevIndex, that.nextIndex)
 
     // beforeChange中返回false则阻止滚屏发生
     if (flag === false) {
       return false;
     }
 
+    if (anim) {
+      that.el.classList.add('anim')
+    } else {
+      that.el.classList.remove('anim')
+    }
+
     that.move(dist)
-    that.o.change(that.prevIndex + 1, that.nextIndex + 1)
+    that.o.change(that.prevIndex, that.nextIndex)
     window.setTimeout(function () {
+      that.o.afterChange(that.prevIndex, that.nextIndex)
       that.o.movingFlag = false
-      that.o.afterChange(that.prevIndex + 1, that.nextIndex + 1)
+      that.prevIndex = curIndex
       vm.$emit('evtAfterChange', {prevIndex: that.prevIndex, nextIndex: that.nextIndex})
     }, that.o.duration)
   }

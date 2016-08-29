@@ -25,21 +25,19 @@ import Hello from './components/Hello'
 export default {
   data () {
     return {
-      str: '123',
       opts: {
+        start: 1,
         dir: 'v',
         loop: false,
-        beforeChange: function (cur) {
-          // if (cur === 2) {
-          //   return false
-          // }
-          console.log('before', cur)
+        duration: 500,
+        beforeChange: function (prev, next) {
+          console.log('before', prev, next)
         },
-        change: function (cur, next) {
-          console.log('change', cur, next)
+        change: function (prev, next) {
+          console.log('change', prev, next)
         },
-        afterChange: function (cur, next) {
-          console.log('after', cur, next)
+        afterChange: function (prev, next) {
+          console.log('after', prev, next)
         }
       }
     }
@@ -79,6 +77,7 @@ export default {
 }
 
 .part1 {
+  transform: translateX(-100px);
   width: 100px;
   height: 100px;
   background: #ccc;
@@ -86,7 +85,7 @@ export default {
 
 .animate-fade {
   transition: all 0.3s;
-  transform: translateX(100px);
+  transform: translateX(0);
 }
 
 </style>
