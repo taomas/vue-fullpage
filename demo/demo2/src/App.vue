@@ -24,7 +24,7 @@ export default {
     return {
       opts: {
         dir: 'v',
-        loop: true,
+        loop: false,
         beforeChange: function (data) {
           console.log('before', data)
         },
