@@ -1,3 +1,4 @@
+require('./vue-fullpage.css');
 (function() {
   var fullpage = {}
   var opt = {

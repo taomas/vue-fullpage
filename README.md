@@ -5,12 +5,17 @@
 ## 功能概述
 可实现移动端的单页滚动效果，支持横向滚动和纵向滚动
 
+## 安装
+
+```
+npm install vue-fullpage --save
+```
+
 ## 快速上手
 
 ### main.js
-main.js需要引入该插件的css和js文件
+在main.js需要引入该插件的css和js文件,(*需在webpack环境下引入*)
 ```js
-import './vue-fullpage.css'
 import VueFullpage from './vue-fullpage.js'
 Vue.use(VueFullpage)
 ```

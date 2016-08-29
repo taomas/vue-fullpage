@@ -1,5 +1,5 @@
 // import 'normalize.css'
-import './vue-fullpage.css'
+// import './vue-fullpage.css'
 import Vue from 'vue'
 import App from './App'
 import VueFullpage from './vue-fullpage.js'
