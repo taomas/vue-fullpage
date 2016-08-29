@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="page-container" v-cover>
+    <div class="page-container">
       <div v-page="opts" class="page-wp">
         <div class="page page1">
           1
@@ -26,15 +26,12 @@ export default {
   data () {
     return {
       opts: {
-        start: 1,
+        start: 0,
         dir: 'v',
         loop: false,
         duration: 500,
         beforeChange: function (prev, next) {
           console.log('before', prev, next)
-        },
-        change: function (prev, next) {
-          console.log('change', prev, next)
         },
         afterChange: function (prev, next) {
           console.log('after', prev, next)

@@ -11,7 +11,6 @@
     dir: 'v',
     der: 0.1,
     movingFlag: false,
-    change: function(data) {},
     beforeChange: function(data) {},
     afterChange: function(data) {}
   }
@@ -24,16 +23,6 @@
       update: function(value) {
         that.init.call(this, value)
       },
-      unbind: function() {
-
-      }
-    })
-    Vue.directive('cover', {
-      bind: function() {
-        this.el.style.opacity = '0'
-        that.coverEle = this.el
-      },
-      update: function() {},
       unbind: function() {
 
       }
@@ -114,15 +103,10 @@
     that.total = that.pageEles.length;
 
     window.setTimeout(function() {
-      if (that.coverEle) {
-        that.coverEle.style.opacity = '1'
-      }
-
       that.width = that.parentEle.offsetWidth
       that.height = that.parentEle.offsetHeight
       for (var i = 0; i < that.pageEles.length; i++) {
         var pageEle = that.pageEles[i]
-        pageEle.classList.add('fullPage-page')
         pageEle.setAttribute('data-id', i)
         pageEle.style.width = that.width + 'px'
         pageEle.style.height = that.height + 'px'
@@ -166,7 +150,6 @@
   }
 
   fullpage.moveTo = function(curIndex, anim) {
-    console.log(curIndex)
     var that = fullpage
     var vm = that.dirEl.vm
     var dist = that.o.dir === 'v' ? (curIndex) * (-that.height) : curIndex * (-that.width)
@@ -186,7 +169,6 @@
     }
 
     that.move(dist)
-    that.o.change(that.prevIndex, that.nextIndex)
     window.setTimeout(function () {
       that.o.afterChange(that.prevIndex, that.nextIndex)
       that.o.movingFlag = false

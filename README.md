@@ -100,3 +100,6 @@ export default {
 
 地址：
 [http://vue.wendaosanshou.top/vue_fullpage_demo/](http://vue.wendaosanshou.top/vue_fullpage_demo/)
+
+感谢：
+代码参考 **颜海镜** 大神的项目：[zepto.fullpage.js](https://github.com/yanhaijing/zepto.fullpage)
