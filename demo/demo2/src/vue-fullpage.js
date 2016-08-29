@@ -29,7 +29,7 @@
     })
     Vue.directive('cover', {
       bind: function() {
-        this.el.style.display = 'none'
+        this.el.style.opacity = '0'
         that.coverEle = this.el
       },
       update: function() {}
@@ -73,7 +73,7 @@
 
     window.setTimeout(function() {
       if (that.coverEle) {
-        that.coverEle.style.display = 'block'
+        that.coverEle.style.opacity = '1'
       }
 
       that.width = that.parentEle.offsetWidth
@@ -93,23 +93,36 @@
     el.addEventListener('touchstart', function(e) {
       that.startX = e.targetTouches[0].pageX;
       that.startY = e.targetTouches[0].pageY;
+      that.o.beforeChange(that.curIndex + 1)
     })
     el.addEventListener('touchend', function(e) {
+      var preIndex = that.curIndex;
       var dir = that.o.dir;
       var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
       var der = sub > 0 ? -1 : 1;
       that.curIndex += der
+
       if (that.curIndex >= 0 && that.curIndex < that.total) {
-        that.moveTo(that.curIndex)
+        that.moveTo(preIndex, that.curIndex)
       } else {
-        that.curIndex = that.curIndex < 0 ? 0 : that.total - 1
+        if (!!that.o.loop) {
+          that.curIndex = that.curIndex < 0 ? that.total - 1 : 0
+          that.moveTo(preIndex, that.curIndex)
+        } else {
+          that.curIndex = that.curIndex < 0 ? 0 : that.total - 1
+        }
       }
     })
   }
 
-  fullpage.moveTo = function(curIndex) {
-    var dist = this.o.dir === 'v' ? curIndex * (-this.height) : curIndex * (-this.width)
-    this.move(dist)
+  fullpage.moveTo = function(preIndex, curIndex) {
+    var that = this
+    var dist = that.o.dir === 'v' ? (curIndex) * (-that.height) : curIndex * (-that.width)
+    that.o.change(preIndex + 1, curIndex + 1)
+    that.move(dist)
+    window.setTimeout(function () {
+      that.o.afterChange(preIndex + 1, curIndex + 1)
+    }, that.o.duration)
   }
 
   fullpage.move = function(dist) {
