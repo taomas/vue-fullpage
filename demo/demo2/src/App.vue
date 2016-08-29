@@ -22,11 +22,15 @@ import Hello from './components/Hello'
 export default {
   data () {
     return {
+      str: '123',
       opts: {
         dir: 'v',
         loop: false,
-        beforeChange: function (data) {
-          console.log('before', data)
+        beforeChange: function (cur) {
+          // if (cur === 2) {
+          //   return false
+          // }
+          console.log('before', cur)
         },
         change: function (cur, next) {
           console.log('change', cur, next)

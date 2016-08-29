@@ -13,8 +13,7 @@
     movingFlag: false,
     change: function(data) {},
     beforeChange: function(data) {},
-    afterChange: function(data) {},
-    orientationchange: function(orientation) {}
+    afterChange: function(data) {}
   }
 
   fullpage.install = function(Vue) {
@@ -22,6 +21,7 @@
     Vue.directive('page', {
       bind: function() {
         that.init(this.el)
+        // that.applyFunc()
       },
       update: function(value) {
         that.updateOpts(value)
@@ -97,7 +97,6 @@
       }
       that.startX = e.targetTouches[0].pageX;
       that.startY = e.targetTouches[0].pageY;
-      that.o.beforeChange(that.curIndex + 1)
     })
     el.addEventListener('touchend', function(e) {
       if (that.o.movingFlag) {
@@ -106,15 +105,16 @@
       var preIndex = that.curIndex;
       var dir = that.o.dir;
       var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
-      var der = sub > 0 ? -1 : 1;
+      var der = sub > that.o.der ? -1 : 1;
+      that.prevIndex = that.curIndex
       that.curIndex += der
 
       if (that.curIndex >= 0 && that.curIndex < that.total) {
-        that.moveTo(preIndex, that.curIndex)
+        that.moveTo(that.curIndex)
       } else {
         if (!!that.o.loop) {
           that.curIndex = that.curIndex < 0 ? that.total - 1 : 0
-          that.moveTo(preIndex, that.curIndex)
+          that.moveTo(that.curIndex)
         } else {
           that.curIndex = that.curIndex < 0 ? 0 : that.total - 1
         }
@@ -122,15 +122,22 @@
     })
   }
 
-  fullpage.moveTo = function(preIndex, curIndex) {
+  fullpage.moveTo = function(curIndex) {
     var that = this
     var dist = that.o.dir === 'v' ? (curIndex) * (-that.height) : curIndex * (-that.width)
-    that.o.change(preIndex + 1, curIndex + 1)
+    that.nextIndex = curIndex;
     that.o.movingFlag = true
+    var flag = that.o.beforeChange(that.prevIndex + 1, that.nextIndex + 1)
+    // beforeChange中返回false则阻止滚屏发生
+    if (flag === false) {
+      return false;
+    }
+
     that.move(dist)
+    that.o.change(that.prevIndex + 1, that.nextIndex + 1)
     window.setTimeout(function () {
       that.o.movingFlag = false
-      that.o.afterChange(preIndex + 1, curIndex + 1)
+      that.o.afterChange(that.prevIndex + 1, that.nextIndex + 1)
     }, that.o.duration)
   }
 
@@ -145,6 +152,7 @@
     this.el.style.cssText += (';-webkit-transform : translate3d(' + xPx + ', ' + yPx + ', 0px);' +
       'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);');
   }
+
 
   if (typeof exports == "object") {
     module.exports = fullpage
