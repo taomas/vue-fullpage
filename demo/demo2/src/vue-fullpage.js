@@ -1,5 +1,8 @@
-require('./vue-fullpage.css');
 (function() {
+  'use strict'
+  if (require && Object.prototype.toString.call(require) === '[object Function]') {
+    require('./vue-fullpage.css');
+  }
   var fullpage = {}
   var opt = {
     start: 0,

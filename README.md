@@ -16,7 +16,7 @@ npm install vue-fullpage --save
 ### main.js
 在main.js需要引入该插件的css和js文件,(*需在webpack环境下引入*)
 ```js
-import VueFullpage from './vue-fullpage.js'
+import VueFullpage from 'vue-fullpage'
 Vue.use(VueFullpage)
 ```
 
