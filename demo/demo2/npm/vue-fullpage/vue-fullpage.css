@@ -1,10 +1,12 @@
 .fullPage-container {
 	overflow: hidden;
-	-webkit-transition: all 500ms ease-out 0s;
-	transition: all 100ms ease-out 0s;
 }
 
 .fullPage-wp {
+	display: -webkit-box;
+  display: -moz-box;
+  display:-webkit-flex;
+  display: -ms-flexbox;
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: flex-start;
@@ -14,12 +16,16 @@
 }
 
 .fullPage-wp.anim{
-		transform: translate3d(0,0,0);
-    -webkit-transition: all 500ms ease-out 0s;
-    transition: all 500ms ease-out 0s;
+	transform: translate3d(0,0,0);
+  -webkit-transition: all 500ms ease-out 0s;
+  transition: all 500ms ease-out 0s;
 }
 
 .fullPage-wp.fullPage-wp-h {
+	display: -webkit-box;
+  display: -moz-box;
+  display:-webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;

@@ -9,7 +9,7 @@
     loop: false,
     drag: false,
     dir: 'v',
-    der: 0.1,
+    der: 0.05,
     movingFlag: false,
     beforeChange: function(data) {},
     afterChange: function(data) {}
@@ -45,7 +45,9 @@
     var el = this.el
     this.vm.$on('evtAfterChange', function (ctx) {
       var curPage = +el.parentNode.getAttribute('data-id')
+      console.log(ctx.nextIndex, curPage)
       if (ctx.nextIndex === curPage) {
+        console.log('add', value)
         that.addAnimate(el, value)
       } else {
         that.removeAnimate(el, value)
@@ -133,9 +135,12 @@
       var preIndex = that.curIndex;
       var dir = that.o.dir;
       var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
-      var der = sub > that.o.der ? -1 : 1;
+      if (Math.abs(sub) < that.o.der) {
+        return 0;
+      }
+      var der = sub > 0 ? -1 : 1;
       that.curIndex += der
-
+      console.log(sub)
       if (that.curIndex >= 0 && that.curIndex < that.total) {
         that.moveTo(that.curIndex, true)
       } else {
@@ -173,6 +178,7 @@
       that.o.afterChange(that.prevIndex, that.nextIndex)
       that.o.movingFlag = false
       that.prevIndex = curIndex
+      console.log('$emit')
       vm.$emit('evtAfterChange', {prevIndex: that.prevIndex, nextIndex: that.nextIndex})
     }, that.o.duration)
   }

@@ -39,10 +39,8 @@ export default {
         loop: false,
         duration: 500,
         beforeChange: function (prev, next) {
-          console.log('before', prev, next)
         },
         afterChange: function (prev, next) {
-          console.log('after', prev, next)
         }
       }
     }
