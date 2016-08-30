@@ -68,7 +68,7 @@
     }
   }
 
-  fullpage.updateOpts = function(option) {
+  fullpage.initOpts = function(option) {
     var that = fullpage
     var o = option ? option : {}
     for (var key in opt) {
@@ -81,7 +81,7 @@
 
   fullpage.init = function(value) {
     var that = fullpage
-    that.updateOpts(value)
+    that.initOpts(value)
 
     that.dirEl = this
     that.curIndex = that.o.start
@@ -107,7 +107,7 @@
         pageEle.setAttribute('data-id', i)
         pageEle.style.width = that.width + 'px'
         pageEle.style.height = that.height + 'px'
-        that.initEvent(pageEle)
+        that.bindEvent(pageEle)
       }
       that.moveTo(that.curIndex, false)
     }, 0)
@@ -124,7 +124,7 @@
     }
   }
 
-  fullpage.initEvent = function(el) {
+  fullpage.bindEvent = function(el) {
     var that = fullpage
     that.prevIndex = that.curIndex
     el.addEventListener('touchstart', function(e) {

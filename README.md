@@ -13,7 +13,6 @@
 ```
 npm install vue-fullpage --save
 ```
----
 #### commonjs
 
 ```js
@@ -25,11 +24,10 @@ Vue.use(VueFullpage)
 var vueFullpage = require('vue-fullpage')
 Vue.use(vueFullpage)
 ```
----
 
 ## 文档
 [api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api.md)
----
+
 
 ## 快速上手
 
@@ -108,7 +106,6 @@ export default {
 }
 </style>
 ```
----
 ## demo
 
 地址：
