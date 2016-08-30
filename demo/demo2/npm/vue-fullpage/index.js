@@ -11,7 +11,8 @@
     dir: 'v',
     der: 0.1,
     movingFlag: false,
-    stopPageScroll: false,
+    pageScroll: false,
+    stopBoundaryScroll: false,
     beforeChange: function(data) {},
     afterChange: function(data) {}
   }
@@ -96,7 +97,7 @@
     that.total = that.pageEles.length
 
     that.updateDirection()
-    that.evtStopPageScroll()
+    that.evtStopBoundaryScroll()
     that.evtResize()
 
     window.setTimeout(function() {
@@ -124,9 +125,22 @@
     }
   }
 
+  fullpage.bindMoveEvent = function (el) {
+    var that = fullpage
+    el.addEventListener('touchmove', function (e) {
+      var dir = that.o.dir
+      var dist = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) : (e.changedTouches[0].pageX - that.startX)
+      that.el.classList.remove('anim')
+      that.move(dist + that.dist)
+    })
+  }
+
   fullpage.bindEvent = function(el) {
     var that = fullpage
     that.prevIndex = that.curIndex
+    if (that.o.pageScroll) {
+      that.bindMoveEvent(el)
+    }
     el.addEventListener('touchstart', function(e) {
       if (that.o.movingFlag) {
         return false
@@ -135,6 +149,7 @@
       that.startY = e.targetTouches[0].pageY
     })
     el.addEventListener('touchend', function(e) {
+      that.move(that.dist)
       if (that.o.movingFlag) {
         return false
       }
@@ -160,7 +175,8 @@
   fullpage.moveTo = function(curIndex, anim) {
     var that = fullpage
     var vm = that.dirEl.vm
-    var dist = that.o.dir === 'v' ? (curIndex) * (-that.height) : curIndex * (-that.width)
+    that.dist = that.o.dir === 'v' ? (curIndex) * (-that.height) : curIndex * (-that.width)
+
     that.nextIndex = curIndex;
     that.o.movingFlag = true
     var flag = that.o.beforeChange(that.prevIndex, that.nextIndex)
@@ -176,7 +192,7 @@
       that.el.classList.remove('anim')
     }
 
-    that.move(dist)
+    that.move(that.dist)
     window.setTimeout(function () {
       that.o.afterChange(that.prevIndex, that.nextIndex)
       that.o.movingFlag = false
@@ -197,9 +213,9 @@
       'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);')
   }
 
-  fullpage.evtStopPageScroll = function () {
+  fullpage.evtStopBoundaryScroll = function () {
     var that = fullpage
-    if (that.o.stopPageScroll) {
+    if (that.o.stopBoundaryScroll) {
       document.querySelector('body').addEventListener('touchstart', function (e) {
         e.preventDefault()
       })
