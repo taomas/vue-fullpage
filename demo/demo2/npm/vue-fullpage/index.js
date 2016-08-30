@@ -96,7 +96,10 @@
     that.pageEles = that.el.children
     that.total = that.pageEles.length
 
-    that.updateDirection()
+    if (that.o.dir !== 'v') {
+      that.el.classList.add('fullPage-wp-h')
+    }
+
     that.evtStopBoundaryScroll()
     that.evtResize()
 
@@ -125,22 +128,9 @@
     }
   }
 
-  fullpage.bindMoveEvent = function (el) {
-    var that = fullpage
-    el.addEventListener('touchmove', function (e) {
-      var dir = that.o.dir
-      var dist = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) : (e.changedTouches[0].pageX - that.startX)
-      that.el.classList.remove('anim')
-      that.move(dist + that.dist)
-    })
-  }
-
   fullpage.bindEvent = function(el) {
     var that = fullpage
     that.prevIndex = that.curIndex
-    if (that.o.pageScroll) {
-      that.bindMoveEvent(el)
-    }
     el.addEventListener('touchstart', function(e) {
       if (that.o.movingFlag) {
         return false
@@ -149,14 +139,13 @@
       that.startY = e.targetTouches[0].pageY
     })
     el.addEventListener('touchend', function(e) {
-      that.move(that.dist)
       if (that.o.movingFlag) {
         return false
       }
       var preIndex = that.curIndex
       var dir = that.o.dir
       var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
-      var der = sub > that.o.der ? -1 : 1
+      var der = Math.abs(sub) > that.o.der ? (sub > 0 ? -1 : 1) : 0
       that.curIndex += der
 
       if (that.curIndex >= 0 && that.curIndex < that.total) {
@@ -202,6 +191,7 @@
   }
 
   fullpage.move = function(dist) {
+    console.log('move')
     var xPx = '0px',
       yPx = '0px'
     if (this.o.dir === 'v') {
@@ -226,14 +216,8 @@
     var that = fullpage
     window.addEventListener('resize', function (e) {
       that.update()
+      that.moveTo(that.curIndex, false)
     })
-  }
-
-  fullpage.updateDirection = function () {
-    var that = fullpage
-    if (that.o.dir !== 'v') {
-      that.el.classList.add('fullPage-wp-h')
-    }
   }
 
   if (typeof exports == "object") {

@@ -35,7 +35,7 @@ export default {
         loop: false,
         duration: 500,
         pageScroll: false,
-        stopBoundaryScroll: false,
+        stopBoundaryScroll: true,
         beforeChange: function (prev, next) {
         },
         afterChange: function (prev, next) {
