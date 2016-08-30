@@ -113,10 +113,22 @@
     }, 0)
   }
 
+  fullpage.update = function () {
+    var that = fullpage
+    that.width = that.parentEle.offsetWidth
+    that.height = that.parentEle.offsetHeight
+    for (var i = 0; i < that.pageEles.length; i++) {
+      var pageEle = that.pageEles[i]
+      pageEle.style.width = that.width + 'px'
+      pageEle.style.height = that.height + 'px'
+    }
+  }
+
   fullpage.initEvent = function(el) {
     var that = fullpage
     that.prevIndex = that.curIndex
     el.addEventListener('touchstart', function(e) {
+      that.update()
       if (that.o.movingFlag) {
         return false;
       }
