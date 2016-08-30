@@ -191,7 +191,6 @@
   }
 
   fullpage.move = function(dist) {
-    console.log('move')
     var xPx = '0px',
       yPx = '0px'
     if (this.o.dir === 'v') {

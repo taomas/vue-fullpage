@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       opts: {
-        start: 1,
+        start: 0,
         dir: 'v',
         loop: false,
         duration: 500,
@@ -76,7 +76,7 @@ export default {
 }
 
 .page4 {
-  background: rgb(123, 170, 190);
+  background: rgb(51, 51, 51);
 }
 
 .part {
