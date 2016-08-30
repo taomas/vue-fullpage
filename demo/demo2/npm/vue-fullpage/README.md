@@ -6,7 +6,7 @@
 可实现移动端的单页滚动效果，支持横向滚动和纵向滚动
 
 ## 兼容性
-目前兼容性较差，请勿用于生产环境使用
+目前还未进行大规模兼容性测试。有bug请提问至[issues](https://github.com/wendaosanshou/vue-fullpage/issues)
 
 ## 安装
 
