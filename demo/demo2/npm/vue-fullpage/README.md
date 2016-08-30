@@ -83,11 +83,10 @@ export default {
         dir: 'v',
         loop: false,
         duration: 500,
+        stopPageScroll: true,
         beforeChange: function (prev, next) {
-          console.log('before', prev, next)
         },
         afterChange: function (prev, next) {
-          console.log('after', prev, next)
         }
       }
     }
@@ -113,7 +112,7 @@ export default {
 ## demo
 
 地址：
-> 请使用chrome的手机模拟器访问
+> 请使用chrome的手机模拟器或手机浏览器访问
 
 [http://vue.wendaosanshou.top/vue_fullpage_demo/](http://vue.wendaosanshou.top/vue_fullpage_demo/)
 
