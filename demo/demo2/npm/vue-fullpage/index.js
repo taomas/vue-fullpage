@@ -42,9 +42,10 @@
   }
 
   fullpage.initAnimate = function (value) {
-    var that = fullpage
-    var el = this.el
-    this.vm.$on('evtAfterChange', function (ctx) {
+    var that = fullpage,
+      el = this.el,
+      vm = this.vm
+    vm.$on('evtAfterChange', function (ctx) {
       var curPage = +el.parentNode.getAttribute('data-id')
       if (ctx.nextIndex === curPage) {
         that.addAnimate(el, value)
@@ -83,22 +84,21 @@
     that.updateOpts(value)
 
     that.dirEl = this
-    that.curIndex = that.o.start;
+    that.curIndex = that.o.start
 
-    that.el = this.el;
-    that.el.classList.add('fullPage-wp');
+    that.el = this.el
+    that.el.classList.add('fullPage-wp')
 
-    that.parentEle = that.el.parentNode;
-    that.parentEle.classList.add('fullPage-container');
+    that.parentEle = that.el.parentNode
+    that.parentEle.classList.add('fullPage-container')
 
-    that.pageEles = that.el.children;
-    that.total = that.pageEles.length;
+    that.pageEles = that.el.children
+    that.total = that.pageEles.length
 
-    that.stopPageScroll()
+    that.updateDirection()
+    that.evtStopPageScroll()
+    that.evtResize()
 
-    if (that.o.dir !== 'v') {
-      that.el.classList.add('fullPage-wp-h')
-    }
     window.setTimeout(function() {
       that.width = that.parentEle.offsetWidth
       that.height = that.parentEle.offsetHeight
@@ -128,21 +128,20 @@
     var that = fullpage
     that.prevIndex = that.curIndex
     el.addEventListener('touchstart', function(e) {
-      that.update()
       if (that.o.movingFlag) {
-        return false;
+        return false
       }
-      that.startX = e.targetTouches[0].pageX;
-      that.startY = e.targetTouches[0].pageY;
+      that.startX = e.targetTouches[0].pageX
+      that.startY = e.targetTouches[0].pageY
     })
     el.addEventListener('touchend', function(e) {
       if (that.o.movingFlag) {
-        return false;
+        return false
       }
-      var preIndex = that.curIndex;
-      var dir = that.o.dir;
+      var preIndex = that.curIndex
+      var dir = that.o.dir
       var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
-      var der = sub > that.o.der ? -1 : 1;
+      var der = sub > that.o.der ? -1 : 1
       that.curIndex += der
 
       if (that.curIndex >= 0 && that.curIndex < that.total) {
@@ -188,25 +187,38 @@
 
   fullpage.move = function(dist) {
     var xPx = '0px',
-      yPx = '0px';
+      yPx = '0px'
     if (this.o.dir === 'v') {
-      yPx = dist + 'px';
+      yPx = dist + 'px'
     } else {
       xPx = dist + 'px'
     }
     this.el.style.cssText += (';-webkit-transform : translate3d(' + xPx + ', ' + yPx + ', 0px);' +
-      'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);');
+      'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);')
   }
 
-  fullpage.stopPageScroll = function () {
-    console.log(this.o.stopPageScroll)
-    if (this.o.stopPageScroll) {
+  fullpage.evtStopPageScroll = function () {
+    var that = fullpage
+    if (that.o.stopPageScroll) {
       document.querySelector('body').addEventListener('touchstart', function (e) {
-        e.preventDefault();
+        e.preventDefault()
       })
     }
   }
 
+  fullpage.evtResize = function () {
+    var that = fullpage
+    window.addEventListener('resize', function (e) {
+      that.update()
+    })
+  }
+
+  fullpage.updateDirection = function () {
+    var that = fullpage
+    if (that.o.dir !== 'v') {
+      that.el.classList.add('fullPage-wp-h')
+    }
+  }
 
   if (typeof exports == "object") {
     module.exports = fullpage
