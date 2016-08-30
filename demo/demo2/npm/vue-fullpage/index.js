@@ -11,7 +11,6 @@
     dir: 'v',
     der: 0.1,
     movingFlag: false,
-    pageScroll: false,
     stopBoundaryScroll: false,
     beforeChange: function(data) {},
     afterChange: function(data) {}

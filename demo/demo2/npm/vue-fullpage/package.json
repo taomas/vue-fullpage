@@ -1,6 +1,6 @@
 {
   "name": "vue-fullpage",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "a single page scroll plugin for vue.js ",
   "main": "index.js",
   "scripts": {

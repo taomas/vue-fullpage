@@ -34,7 +34,6 @@ export default {
         dir: 'v',
         loop: false,
         duration: 500,
-        pageScroll: false,
         stopBoundaryScroll: true,
         beforeChange: function (prev, next) {
         },

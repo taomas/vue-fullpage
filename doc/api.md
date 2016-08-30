@@ -41,7 +41,7 @@ opts: {
 滚动方向，默认为``v``，垂直滚动
 垂直滚动：``v``,水平滚动：``h``
 
-#### stopPageScroll
+#### stopBoundaryScroll
 是否阻止页面下滑时上方出现黑色背景。主要见于微信和QQ浏览器。
 为``true``表示阻止
 
