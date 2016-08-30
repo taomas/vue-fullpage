@@ -9,8 +9,9 @@
     loop: false,
     drag: false,
     dir: 'v',
-    der: 0.05,
+    der: 0.1,
     movingFlag: false,
+    stopPageScroll: false,
     beforeChange: function(data) {},
     afterChange: function(data) {}
   }
@@ -45,9 +46,7 @@
     var el = this.el
     this.vm.$on('evtAfterChange', function (ctx) {
       var curPage = +el.parentNode.getAttribute('data-id')
-      console.log(ctx.nextIndex, curPage)
       if (ctx.nextIndex === curPage) {
-        console.log('add', value)
         that.addAnimate(el, value)
       } else {
         that.removeAnimate(el, value)
@@ -60,11 +59,12 @@
   }
 
   fullpage.removeAnimate = function (el, animate) {
-    el.classList.forEach(function (item) {
-      if (item.indexOf('animate-') !== -1) {
-        el.classList.remove(item)
+    var classList = el.classList
+    for (var i = 0; i < classList.length; i++) {
+      if (classList[i].indexOf('animate-') !== -1) {
+        el.classList.remove(classList[i])
       }
-    })
+    }
   }
 
   fullpage.updateOpts = function(option) {
@@ -76,13 +76,6 @@
       }
     }
     that.o = o;
-    that.updatePageEle()
-  }
-
-  fullpage.updatePageEle = function() {
-    if (this.o.dir !== 'v') {
-      this.el.classList.add('fullPage-wp-h')
-    }
   }
 
   fullpage.init = function(value) {
@@ -91,9 +84,6 @@
 
     that.dirEl = this
     that.curIndex = that.o.start;
-
-    that.startY = 0;
-    that.o.movingFlag = false;
 
     that.el = this.el;
     that.el.classList.add('fullPage-wp');
@@ -104,6 +94,11 @@
     that.pageEles = that.el.children;
     that.total = that.pageEles.length;
 
+    that.stopPageScroll()
+
+    if (that.o.dir !== 'v') {
+      that.el.classList.add('fullPage-wp-h')
+    }
     window.setTimeout(function() {
       that.width = that.parentEle.offsetWidth
       that.height = that.parentEle.offsetHeight
@@ -135,12 +130,9 @@
       var preIndex = that.curIndex;
       var dir = that.o.dir;
       var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
-      if (Math.abs(sub) < that.o.der) {
-        return 0;
-      }
-      var der = sub > 0 ? -1 : 1;
+      var der = sub > that.o.der ? -1 : 1;
       that.curIndex += der
-      console.log(sub)
+
       if (that.curIndex >= 0 && that.curIndex < that.total) {
         that.moveTo(that.curIndex, true)
       } else {
@@ -178,7 +170,6 @@
       that.o.afterChange(that.prevIndex, that.nextIndex)
       that.o.movingFlag = false
       that.prevIndex = curIndex
-      console.log('$emit')
       vm.$emit('evtAfterChange', {prevIndex: that.prevIndex, nextIndex: that.nextIndex})
     }, that.o.duration)
   }
@@ -193,6 +184,15 @@
     }
     this.el.style.cssText += (';-webkit-transform : translate3d(' + xPx + ', ' + yPx + ', 0px);' +
       'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);');
+  }
+
+  fullpage.stopPageScroll = function () {
+    console.log(this.o.stopPageScroll)
+    if (this.o.stopPageScroll) {
+      document.querySelector('body').addEventListener('touchstart', function (e) {
+        e.preventDefault();
+      })
+    }
   }
 
 

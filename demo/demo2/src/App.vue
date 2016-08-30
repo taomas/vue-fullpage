@@ -38,6 +38,7 @@ export default {
         dir: 'v',
         loop: false,
         duration: 500,
+        stopPageScroll: true,
         beforeChange: function (prev, next) {
         },
         afterChange: function (prev, next) {
