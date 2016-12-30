@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-
 import 'vue-fullpage/vue-fullpage.css'
 import VueFullpage from 'vue-fullpage'
+
 Vue.use(VueFullpage, {
   start: 0,
   dir: 'v',
