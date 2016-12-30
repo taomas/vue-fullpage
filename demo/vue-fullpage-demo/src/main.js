@@ -1,8 +1,8 @@
-import './assets/lib/vue-fullpage.css'
-
 import Vue from 'vue'
 import App from './App.vue'
-import VueFullpage from './assets/lib/index.js'
+
+import 'vue-fullpage/vue-fullpage.css'
+import VueFullpage from 'vue-fullpage'
 Vue.use(VueFullpage, {
   start: 0,
   dir: 'v',
