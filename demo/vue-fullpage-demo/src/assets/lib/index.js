@@ -18,7 +18,6 @@
     var that = fullpage
     Vue.directive('fullpage', {
       inserted: function(el, binding, vnode) {
-        console.log(vnode)
         that.init(el, options, vnode)
       }
     })

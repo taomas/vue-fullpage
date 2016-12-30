@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div class="fullpage-wrap">
-      <div class="vue-fullpage-demo" v-fullpage>
+    <div class="fullpage-container">
+      <div class="fullpage-wp" v-fullpage>
         <div class="page-1 page">
           <p class="part-1" v-animate="'fadeInLeft'">{{msg}}</p>
         </div>
@@ -34,7 +34,7 @@ body {
   padding: 0;
 }
 
-.fullpage-wrap {
+.fullpage-container {
   position: absolute;
   width: 100%;
   height: 100%;

@@ -1,6 +1,5 @@
 (function() {
   'use strict'
-  require('./vue-fullpage.css')
 
   var fullpage = {}
   var opt = {
@@ -15,57 +14,55 @@
     afterChange: function(data) {}
   }
 
-  fullpage.install = function(Vue) {
+  fullpage.install = function(Vue, options) {
     var that = fullpage
-    Vue.directive('page', {
-      bind: function() {
-      },
-      update: function(value) {
-        that.init.call(this, value)
-      },
-      unbind: function() {
-
+    Vue.directive('fullpage', {
+      inserted: function(el, binding, vnode) {
+        that.init(el, options, vnode)
       }
     })
+
     Vue.directive('animate', {
-      bind: function() {
-
-      },
-      update: function(value) {
-        that.initAnimate.call(this, value)
-      },
-      unbind: function() {
-
+      inserted: function(el, binding, vnode) {
+        that.initAnimate(el, binding, vnode)
       }
     })
   }
 
-  fullpage.initAnimate = function (value) {
+  fullpage.initAnimate = function(el, binding, vnode) {
     var that = fullpage
-    var el = this.el
-    this.vm.$on('evtAfterChange', function (ctx) {
+    var vm = vnode.context,
+      animateVal = binding.value;
+    vm.$on('toogle_animate', function (curIndex) {
       var curPage = +el.parentNode.getAttribute('data-id')
-      if (ctx.nextIndex === curPage) {
-        that.addAnimate(el, value)
+      if (curIndex === curPage) {
+        that.addAnimateActive(el, animateVal)
       } else {
-        that.removeAnimate(el, value)
+        that.removeAnimateActive(el, animateVal)
       }
+    })
+    el.classList.add('animate-' + animateVal)
+  }
+
+  fullpage.toogleAnimate = function(ctx) {
+    animates.forEach(function(item) {
+      item.toogleAnimate(ctx)
     })
   }
 
-  fullpage.addAnimate = function (el, animate) {
-    el.classList.add('animate-' + animate)
+  fullpage.addAnimateActive = function(el, animate) {
+    el.classList.add('animate-' + animate + '-active')
   }
 
-  fullpage.removeAnimate = function (el, animate) {
-    el.classList.forEach(function (item) {
-      if (item.indexOf('animate-') !== -1) {
+  fullpage.removeAnimateActive = function(el, animate) {
+    el.classList.forEach(function(item) {
+      if (item.indexOf('-active') !== -1) {
         el.classList.remove(item)
       }
     })
   }
 
-  fullpage.updateOpts = function(option) {
+  fullpage.assignOpts = function(option) {
     var that = fullpage
     var o = option ? option : {}
     for (var key in opt) {
@@ -74,40 +71,43 @@
       }
     }
     that.o = o;
-    that.updatePageEle()
   }
 
-  fullpage.updatePageEle = function() {
+  fullpage.initScrollDirection = function() {
     if (this.o.dir !== 'v') {
-      this.el.classList.add('fullPage-wp-h')
+      this.el.classList.add('fullpage-wp-h')
     }
   }
 
-  fullpage.init = function(value) {
+  fullpage.init = function(el, options, vnode) {
+    console.log(options)
     var that = fullpage
-    that.updateOpts(value)
+    that.assignOpts(options)
 
-    that.dirEl = this
+    that.vm = vnode.context
     that.curIndex = that.o.start;
 
     that.startY = 0;
     that.o.movingFlag = false;
 
-    that.el = this.el;
-    that.el.classList.add('fullPage-wp');
+    that.el = el;
+    that.el.classList.add('fullpage-wp');
 
     that.parentEle = that.el.parentNode;
-    that.parentEle.classList.add('fullPage-container');
+    that.parentEle.classList.add('fullpage-container');
 
     that.pageEles = that.el.children;
     that.total = that.pageEles.length;
 
+    that.initScrollDirection()
     window.setTimeout(function() {
       that.width = that.parentEle.offsetWidth
       that.height = that.parentEle.offsetHeight
+
       for (var i = 0; i < that.pageEles.length; i++) {
         var pageEle = that.pageEles[i]
         pageEle.setAttribute('data-id', i)
+        pageEle.classList.add('page')
         pageEle.style.width = that.width + 'px'
         pageEle.style.height = that.height + 'px'
         that.initEvent(pageEle)
@@ -151,12 +151,10 @@
 
   fullpage.moveTo = function(curIndex, anim) {
     var that = fullpage
-    var vm = that.dirEl.vm
     var dist = that.o.dir === 'v' ? (curIndex) * (-that.height) : curIndex * (-that.width)
     that.nextIndex = curIndex;
     that.o.movingFlag = true
     var flag = that.o.beforeChange(that.prevIndex, that.nextIndex)
-
     // beforeChange中返回false则阻止滚屏发生
     if (flag === false) {
       return false;
@@ -169,11 +167,11 @@
     }
 
     that.move(dist)
-    window.setTimeout(function () {
+    window.setTimeout(function() {
       that.o.afterChange(that.prevIndex, that.nextIndex)
       that.o.movingFlag = false
       that.prevIndex = curIndex
-      vm.$emit('evtAfterChange', {prevIndex: that.prevIndex, nextIndex: that.nextIndex})
+      that.vm.$emit('toogle_animate', curIndex)
     }, that.o.duration)
   }
 
