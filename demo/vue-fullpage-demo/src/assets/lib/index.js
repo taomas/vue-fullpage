@@ -1,6 +1,5 @@
 (function() {
   'use strict'
-  // require('./vue-fullpage.css')
 
   var fullpage = {}
   var opt = {
@@ -18,37 +17,32 @@
   fullpage.install = function(Vue, options) {
     var that = fullpage
     Vue.directive('fullpage', {
-      inserted: function(el) {
-        that.init.call(Vue, el, options)
+      inserted: function(el, binding, vnode) {
+        console.log(vnode)
+        that.init(el, options, vnode)
       }
     })
 
     Vue.directive('animate', {
-      inserted: function(el, binding) {
-        that.initAnimate.call(Vue, el, binding)
+      inserted: function(el, binding, vnode) {
+        that.initAnimate(el, binding, vnode)
       }
     })
   }
 
-  var animates = []
-  fullpage.initAnimate = function(el, binding) {
+  fullpage.initAnimate = function(el, binding, vnode) {
     var that = fullpage
-    var animate = {
-      value: binding.value,
-      el: el,
-      toogleAnimate: function(ctx) {
-        var el = this.el,
-          value = this.value,
-          curPage = +el.parentNode.getAttribute('data-id')
-        if (ctx.nextIndex === curPage) {
-          that.addAnimateActive(el, value)
-        } else {
-          that.removeAnimateActive(el, value)
-        }
+    var vm = vnode.context,
+      animateVal = binding.value;
+    vm.$on('toogle_animate', function (curIndex) {
+      var curPage = +el.parentNode.getAttribute('data-id')
+      if (curIndex === curPage) {
+        that.addAnimateActive(el, animateVal)
+      } else {
+        that.removeAnimateActive(el, animateVal)
       }
-    }
-    animates.push(animate)
-    el.classList.add('animate-' + binding.value)
+    })
+    el.classList.add('animate-' + animateVal)
   }
 
   fullpage.toogleAnimate = function(ctx) {
@@ -86,11 +80,12 @@
     }
   }
 
-  fullpage.init = function(el, options) {
+  fullpage.init = function(el, options, vnode) {
     console.log(options)
     var that = fullpage
     that.assignOpts(options)
 
+    that.vm = vnode.context
     that.curIndex = that.o.start;
 
     that.startY = 0;
@@ -161,7 +156,6 @@
     that.nextIndex = curIndex;
     that.o.movingFlag = true
     var flag = that.o.beforeChange(that.prevIndex, that.nextIndex)
-
     // beforeChange中返回false则阻止滚屏发生
     if (flag === false) {
       return false;
@@ -178,10 +172,7 @@
       that.o.afterChange(that.prevIndex, that.nextIndex)
       that.o.movingFlag = false
       that.prevIndex = curIndex
-      that.toogleAnimate({
-        prevIndex: that.prevIndex,
-        nextIndex: that.nextIndex
-      })
+      that.vm.$emit('toogle_animate', curIndex)
     }, that.o.duration)
   }
 

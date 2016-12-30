@@ -3,13 +3,13 @@
     <div class="fullpage-wrap">
       <div class="vue-fullpage-demo" v-fullpage>
         <div class="page-1 page">
-          <p class="part-1" v-animate="'fadeInLeft'">VueFullpage</p>
+          <p class="part-1" v-animate="'fadeInLeft'">{{msg}}</p>
         </div>
         <div class="page-2 page">
-          <p class="part-2" v-animate="'fadeInRight'">VueFullpage</p>
+          <p class="part-2" v-animate="'fadeInRight'">{{msg}}</p>
         </div>
         <div class="page-3 page">
-          <p class="part-3" v-animate="'fadeInTop'">VueFullpage</p>
+          <p class="part-3" v-animate="'fadeInTop'">{{msg}}</p>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'VueFullpage'
     }
   }
 }
