@@ -82,3 +82,6 @@ Vue.use(VueFullpage, {
 
 ## 感谢
 代码参考 **颜海镜** 大神的项目：[zepto.fullpage.js](https://github.com/yanhaijing/zepto.fullpage)
+
+## todo
+ - 修改demo以及新增deme介绍页
