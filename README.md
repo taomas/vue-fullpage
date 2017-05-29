@@ -41,7 +41,7 @@ Vue.use(VueFullpage, {
 #### app.vue
 
 **模板部分：**
-在``page-wp``容器上加``v-page``指令
+在``page-wp``容器上加``v-fullpage``指令
 ```html
 <div class="fullpage-container">
   <div class="fullpage-wp" v-fullpage>
