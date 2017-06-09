@@ -2,7 +2,7 @@
 实现移动端的单页滚动效果,基于vue.js,目前只支持vue2.0及以上版本
 
 ## 指令
-#### v-page
+#### v-fullpage
 初始化``fullpage``需要的指令，需要放在``page-wp``容器上面
 
 #### v-animate
