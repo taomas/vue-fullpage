@@ -120,6 +120,7 @@
     var that = fullpage
     that.prevIndex = that.curIndex
     el.addEventListener('touchstart', function(e) {
+      console.log('start')
       if (that.o.movingFlag) {
         return false;
       }
@@ -133,7 +134,7 @@
       var preIndex = that.curIndex;
       var dir = that.o.dir;
       var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
-      var der = sub > that.o.der ? -1 : 1;
+      var der = sub > that.o.der ? -1 : sub < -that.o.der ? 1 : 0;
       that.curIndex += der
 
       if (that.curIndex >= 0 && that.curIndex < that.total) {
@@ -155,7 +156,6 @@
     that.nextIndex = curIndex;
     that.o.movingFlag = true
     var flag = that.o.beforeChange(that.prevIndex, that.nextIndex)
-    // beforeChange中返回false则阻止滚屏发生
     if (flag === false) {
       return false;
     }
@@ -185,6 +185,14 @@
     }
     this.el.style.cssText += (';-webkit-transform : translate3d(' + xPx + ', ' + yPx + ', 0px);' +
       'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);');
+  }
+
+  fullpage.loadStyle = (url) => {
+    var link = document.createElement('link')
+    link.ref = 'stylesheet'
+    link.type = 'text/css'
+    link.src = url
+    document.head.appendChild(script)
   }
 
 

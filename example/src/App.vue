@@ -2,7 +2,6 @@
   <div id="app">
     <div class="fullpage-container">
       <div class="fullpage-wp" v-fullpage>
-
         <div class="page-1 page">
           <p class="part-1" v-animate="'fadeInLeft'">{{msg}}</p>
         </div>
@@ -31,17 +30,12 @@ export default {
 </script>
 
 <style>
-@import './assets/lib/vue-fullpage.css';
 body {
   margin: 0;
   padding: 0;
 }
 
 .fullpage-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  font-size: 100px;
   text-align: center;
 }
 
