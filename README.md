@@ -78,7 +78,7 @@ Vue.use(VueFullpage, {
 地址：
 > 请使用chrome的手机模拟器或手机浏览器访问
 
-[http://vue.wendaosanshou.top/vue_fullpage_demo/](http://vue.wendaosanshou.top/vue_fullpage_demo/)
+[http://vue.fecss.com/vue-fullpage/](http://vue.fecss.com/vue-fullpage/)
 
 ## 感谢
 代码参考 **颜海镜** 大神的项目：[zepto.fullpage.js](https://github.com/yanhaijing/zepto.fullpage)
