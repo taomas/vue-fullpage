@@ -33,31 +33,29 @@
     var that = fullpage
     var vm = vnode.context,
       animateVal = binding.value;
+    el.style.opacity = '0'
     vm.$on('toogle_animate', function (curIndex) {
       var curPage = +el.parentNode.getAttribute('data-id')
       if (curIndex === curPage) {
-        that.addAnimateActive(el, animateVal)
+        el.style.opacity = '1'
+        that.addAnimated(el, animateVal)
       } else {
-        that.removeAnimateActive(el, animateVal)
+        el.style.opacity = '0'
+        that.removeAnimated(el, animateVal)
       }
     })
-    el.classList.add('animate-' + animateVal)
   }
 
-  fullpage.toogleAnimate = function(ctx) {
-    animates.forEach(function(item) {
-      item.toogleAnimate(ctx)
-    })
+  fullpage.addAnimated = function(el, animate) {
+    el.classList.add('animated')
+    el.classList.add(animate)
   }
 
-  fullpage.addAnimateActive = function(el, animate) {
-    el.classList.add('animate-' + animate + '-active')
-  }
-
-  fullpage.removeAnimateActive = function(el, animate) {
+  fullpage.removeAnimated = function(el, animate) {
     el.classList.forEach(function(item) {
-      if (item.indexOf('-active') !== -1) {
+      if (item.indexOf('animated') !== -1) {
         el.classList.remove(item)
+        el.classList.remove(animate)
       }
     })
   }

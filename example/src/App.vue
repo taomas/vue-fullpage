@@ -3,15 +3,15 @@
     <div class="fullpage-container">
       <div class="fullpage-wp" v-fullpage>
         <div class="page-1 page">
-          <p class="part-1" v-animate="'fadeInLeft'">{{msg}}</p>
+          <p class="part-1" v-animate="'bounceInLeft'">{{msg}}</p>
         </div>
 
         <div class="page-2 page">
-          <p class="part-2" v-animate="'fadeInRight'">{{msg}}</p>
+          <p class="part-2" v-animate="'bounceInRight'">{{msg}}</p>
         </div>
         
         <div class="page-3 page">
-          <p class="part-3" v-animate="'fadeInTop'">{{msg}}</p>
+          <p class="part-3" v-animate="'fadeInDownBig'">{{msg}}</p>
         </div>
       </div>
     </div>

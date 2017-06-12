@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "vue": "^2.2.6",
     "vue-fullpage": "^1.1.1"
   },

@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import '../../vue-fullpage.css'
-import VueFullpage from 'vue-fullpage'
+import 'animate.css'
+import VueFullpage from '../../index.js'
 
 Vue.use(VueFullpage)
 
