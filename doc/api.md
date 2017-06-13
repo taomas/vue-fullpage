@@ -1,4 +1,4 @@
-# api.fullpage文档
+# vue-fullpage文档
 实现移动端的单页滚动效果,基于vue.js,目前只支持vue2.0及以上版本
 
 ## 指令

@@ -3,10 +3,7 @@
 > 基于vue的fullpage.js
 
 ## 功能概述
-可实现移动端的单页滚动效果，支持横向滚动和纵向滚动
-
-## 兼容性
-目前还未进行大规模兼容性测试。有bug请提问至[issues](https://github.com/wendaosanshou/vue-fullpage/issues)
+可实现移动端的单页滚动效果，支持横向滚动和纵向滚动，支持animate.css里的所有动画指令
 
 ## 安装
 

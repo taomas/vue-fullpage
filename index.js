@@ -18,13 +18,16 @@
     var that = fullpage
     Vue.directive('fullpage', {
       inserted: function(el, binding, vnode) {
-        that.init(el, options, vnode)
+        var opts = binding.value || {}
+        that.init(el, opts, vnode)
       }
     })
 
     Vue.directive('animate', {
       inserted: function(el, binding, vnode) {
-        that.initAnimate(el, binding, vnode)
+        if (binding.value) {
+          that.initAnimate(el, binding, vnode)
+        }
       }
     })
   }
@@ -78,7 +81,6 @@
   }
 
   fullpage.init = function(el, options, vnode) {
-    console.log(options)
     var that = fullpage
     that.assignOpts(options)
 
@@ -118,7 +120,6 @@
     var that = fullpage
     that.prevIndex = that.curIndex
     el.addEventListener('touchstart', function(e) {
-      console.log('start')
       if (that.o.movingFlag) {
         return false;
       }

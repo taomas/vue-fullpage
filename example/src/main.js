@@ -1,10 +1,11 @@
 import Vue from 'vue'
-import App from './App.vue'
 import TouchEmulator from 'hammer-touchemulator/touch-emulator.js'
-import '../../vue-fullpage.css'
+import App from './App.vue'
 import 'normalize.css'
 import 'animate.css'
+import '../../vue-fullpage.css'
 import VueFullpage from '../../index.js'
+import router from './route/index.js'
 
 Vue.use(VueFullpage)
 TouchEmulator()
@@ -12,6 +13,7 @@ TouchEmulator()
 /* eslint-disable */
 new Vue({
   el: '#app',
+  router,
   render: h => h(App)
 })
 /* eslint-enable */
