@@ -1,63 +1,83 @@
 # vue-fullpage
 
-> 基于vue的fullpage.js
+README：[中文版](https://github.com/wendaosanshou/vue-fullpage/doc/README_CN.md)
+> A sigle-page scroll plugin based on vue.js
 
-## 功能概述
-可实现移动端的单页滚动效果，支持横向滚动和纵向滚动，支持animate.css里的所有动画指令
+## overview
+To achieve sigle-page scroll in mobile, support horizontal scroll and vertical scroll, support all the animation instructions of animate.css.
 
-## 安装
+## Online demo
+[http://vue.fecss.com/vue-fullpage/](http://vue.fecss.com/vue-fullpage/)
 
+## Installation
 ```
 npm install vue-fullpage --save
 ```
+If you want use animate instruction, please install animate.css
+```
+npm isntall animate.css --save
+```
+[animate.css usage](https://daneden.github.io/animate.css/)
 
-## 文档
-[api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api.md)
+## Document
+[api document](https://github.com/wendaosanshou/vue-fullpage/doc/api.md)
 
-
-## 快速上手
+## getting started
 
 #### main.js
-在main.js需要引入该插件的css和js文件
-在使用VueFullpage时配置自定义参数
+Import the plugin of css and js file in main.js
 
 ```js
+import 'animate.css'
 import 'vue-fullpage/vue-fullpage.css'
 import VueFullpage from 'vue-fullpage'
-Vue.use(VueFullpage, {
-  start: 0,
-  dir: 'v',
-  duration: 500,
-  beforeChange: function (prev, next) {
-  },
-  afterChange: function (prev, next) {
-  }
-})
+Vue.use(VueFullpage)
 ```
 
 #### app.vue
 
-**模板部分：**
-在``page-wp``容器上加``v-fullpage``指令
+**template**
+``fullpage-container``、``fullpage-wp``、``page``are default class name.
+Add the ``v-fullpage`` command to the ``page-wp`` container.
+Add the ``v-animate`` command to the ``page`` container.
 ```html
 <div class="fullpage-container">
-  <div class="fullpage-wp" v-fullpage>
+  <div class="fullpage-wp" v-fullpage="opts">
     <div class="page-1 page">
-      <p class="part-1" v-animate="'fadeInLeft'">VueFullpage</p>
+      <p class="part-1" v-animate="'bounceInLeft'">VueFullpage</p>
     </div>
     <div class="page-2 page">
-      <p class="part-2" v-animate="'fadeInRight'">VueFullpage</p>
+      <p class="part-2" v-animate="'bounceInRight'">VueFullpage</p>
     </div>
     <div class="page-3 page">
-      <p class="part-3" v-animate="'fadeInTop'">VueFullpage</p>
+      <p class="part-3" v-animate="'bounceInDown'">VueFullpage</p>
     </div>
   </div>
 </div>
 ```
 
-**css部分：**
-``page-container``需要固定宽度和高度，``fullpage``会自适应父元素的宽度和高度。  
-如下设置可使滚动页面充满全屏
+**script**
+```js
+export default {
+  data() {
+    return {
+      opts: {
+        start: 0,
+        dir: 'v',
+        duration: 500,
+        beforeChange: function (prev, next) {
+        },
+        afterChange: function (prev, next) {
+        }
+      }
+    }
+  }
+}
+```
+
+**style**
+Set the ``page-container`` container's width and height what do you want, and the ``v-fullpage`` command will adapt the width and height of the parent element.
+The following settings allow the scrolling page to fill the full screen.
 ```
 <style>
 .page-container {
@@ -69,16 +89,3 @@ Vue.use(VueFullpage, {
 }
 </style>
 ```
-## demo
-源码：[https://github.com/wendaosanshou/vue-fullpage/tree/master/demo/vue-fullpage-demo](https://github.com/wendaosanshou/vue-fullpage/tree/master/demo/vue-fullpage-demo)
-
-地址：
-> 请使用chrome的手机模拟器或手机浏览器访问
-
-[http://vue.fecss.com/vue-fullpage/](http://vue.fecss.com/vue-fullpage/)
-
-## 感谢
-代码参考 **颜海镜** 大神的项目：[zepto.fullpage.js](https://github.com/yanhaijing/zepto.fullpage)
-
-## todo
- - 修改demo以及新增deme介绍页

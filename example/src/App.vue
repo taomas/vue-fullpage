@@ -5,9 +5,7 @@
     </div>
     <div class="app-content ly-row-flex flex-start">
       <router-view></router-view>
-      <div class="demo-wrapper">
-        <phone></phone>
-      </div>
+      <phone></phone>
     </div>
   </div>
 </template>
@@ -34,11 +32,9 @@ body {
 }
 
 .app {
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  padding-bottom: 30px;
   color: #eee;
 }
 
@@ -46,7 +42,7 @@ body {
   box-sizing: border-box;
   width: 100%;
   height: 90px;
-  padding-left: 40px;
+  padding-left: 60px;
   color: #fff;
   border-bottom: 1px solid #eee;
   .header-name {
@@ -82,19 +78,6 @@ body {
     width: calc(100% - 350px);
     height: auto;
     padding: 0 30px;
-  }
-  .demo-wrapper {
-    box-sizing: border-box;
-    position: fixed;
-    right: 50px;
-    top: 50%;
-    width: 300px;
-    height: 556px;
-    transform: translate(0, -50%);
-    padding: 80px 20px;
-    margin-top: 30px;
-    background: url('./assets/image/phone_bg.png');
-    background-size: 100% 100%;
   }
 }
 </style>

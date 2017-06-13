@@ -96,10 +96,7 @@ export default {
 ```
   </textarea>
 </marked>
-
-<h1>Custom properties</h1>
-<p>there is a basic properties</p>
-
+<a href="#" class="github-link">view on github</a>
 </div>
 </template>
 
@@ -118,5 +115,16 @@ export default {
 </script>
 
 <style lang='postcss' scoped>
-
+.github-link {
+  display: block;
+  width: 300px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 26px;
+  margin: 0 auto;
+  color: hsla(0,0%,100%,.6);
+  background: transparent;
+  border: 1px solid hsla(0,0%,100%,.6);
+}
 </style>

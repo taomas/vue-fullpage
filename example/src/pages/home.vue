@@ -1,6 +1,5 @@
 <template>
   <div class="main ly-row-flex flex-start">
-    <doc-installation></doc-installation>
     <div class="demo-wrapper">
       <phone></phone>
     </div>

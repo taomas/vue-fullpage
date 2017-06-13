@@ -1,4 +1,5 @@
 <template>
+<div class="demo-wrapper">
   <div class="fullpage-container">
     <div class="fullpage-wp" v-fullpage="opts">
       <div class="page-1 page">
@@ -14,10 +15,10 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
-
 export default {
   name: 'demo',
   data() {
@@ -40,7 +41,19 @@ export default {
 </script>
 
 <style lang='postcss' scoped>
-
+.demo-wrapper {
+  box-sizing: border-box;
+  position: fixed;
+  top: 50%;
+  right: 30px;
+  width: 300px;
+  height: 556px;
+  padding: 80px 20px;
+  transform: translate(0, -50%);
+  background: url('../assets/image/phone_bg.png');
+  background-size: 100% 100%;
+}
+  
 .page p {
   display: block;
   margin-top: 100px;

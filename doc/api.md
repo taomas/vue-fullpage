@@ -1,15 +1,15 @@
-# vue-fullpage文档
-实现移动端的单页滚动效果,基于vue.js,目前只支持vue2.0及以上版本
+# vue-fullpage document
+vue-fullpage is a plugin to implement sigle page scroll, based on vue.js, Only support vue2.0 version.
 
-## 指令
+## instruction
 #### v-fullpage
-初始化``fullpage``需要的指令，需要放在``page-wp``容器上面
+a instruction for initialization vue-fullpage, need to be placed on the ``page-wp`` container.
 
 #### v-animate
-可以通过该指令为元素添加动画。
+a instruction from add animation action to element.
 
-## 参数
-fullpage支持无参数的调用，每个参数都会有默认值，如果想实现自定义的功能，可以使用自定义参数。一个典型的自定义参数如下：
+## parameter
+vue-fullpage support no parameter, every parameter has a default value, if want to custom function, you'd better to use custom parameter, there is a typical custom params:
 ```
 opts: {
 	start: 0,
@@ -24,32 +24,30 @@ opts: {
 	}
 }
 ```
-#### page
-每屏的选择符，默认是`` .page``。  
-必须给每页添加该选择符。
 
 #### start
-从第几屏开始，默认是第一屏。
+starting from the start screen, The default is first screen。
 
 #### duration
-每屏动画的显示时间，切换页面后在``duration``时间过后才能再次切换下一页，默认为``500ms``
+the shortest display time for every screen, switch next screen muse after the ``duration`` time, the default tiem is 500ms. d
 
 #### loop
-是否支持循环滚动，默认为``false``
+whether support loop scroll, the default value is false.
 
 #### dir
-滚动方向，默认为``v``，垂直滚动
-垂直滚动：``v``,水平滚动：``h``
+this is the scrolling direction, the default value is ``v``, it's vertical scrolling.
+vertical scrolling: ``v``.
+horizontal scrolling: ``h``.
 
 #### der
-最小滑动距离，只有滑动距离大于最小滑动距离才会触发滚动效果
-默认为：``0.1``
+the minimum slide distance, only slide distance more than the ``der``, the page will scroll.
+the default value is ``0.1``.
 
 #### beforeChange
-当页面在滑动后触发``beforeChange``
-包含两个参数``prev``和``next``，指当前页面和滑动后页面的index
-在``beforeChange``方法中``return false``可以阻止页面的滑动
+the function will handle when page after scroll.
+contains two parameters `` prev`` and `` next``, referring to the current page and the page after the index.
+in the ``beforeChange`` method ``return false`` can prevent the page from sliding.
 
 #### afterChange
-当页面滑动到下一页并且过了``duration``这个时间段后触发
-包含两个参数``prev``和``next``，指当前页面和滑动后页面的index
+slide the page to the next page when after ``duration`` time period.
+contains two parameters ``prev`` and ``next``, referring to the current page's ``index`` and the after page's ``index``.

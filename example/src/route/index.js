@@ -7,7 +7,7 @@ import DocInstallation from '../components/doc-installation.vue'
 
 const routes = [
   {
-    path: '/installation',
+    path: '/',
     name: 'installation',
     component: DocInstallation
   },
