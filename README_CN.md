@@ -1,6 +1,6 @@
 # vue-fullpage
 
-README：[English Version](https://github.com/wendaosanshou/vue-fullpage/doc/README_CN.md)
+README：[English Version](https://github.com/wendaosanshou/vue-fullpage/blob/master/README.md)
 > 一个基于vue.js的页面滚动插件
 
 ## 线上demo
@@ -20,7 +20,7 @@ npm isntall animate.css --save
 [animate.css用法](https://daneden.github.io/animate.css/)
 
 ## 文档
-[api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api.md)
+[api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api_cn.md)
 
 ## 快速上手
 

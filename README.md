@@ -1,6 +1,6 @@
 # vue-fullpage
 
-README：[中文版](https://github.com/wendaosanshou/vue-fullpage/doc/README_CN.md)
+README：[中文版](https://github.com/wendaosanshou/vue-fullpage/blob/master/README_CN.md)
 > A sigle-page scroll plugin based on vue.js
 
 ## overview
@@ -20,7 +20,7 @@ npm isntall animate.css --save
 [animate.css usage](https://daneden.github.io/animate.css/)
 
 ## Document
-[api document](https://github.com/wendaosanshou/vue-fullpage/doc/api.md)
+[api document](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api.md)
 
 ## getting started
 
