@@ -6,7 +6,6 @@
     start: 0,
     duration: 500,
     loop: false,
-    drag: false,
     dir: 'v',
     der: 0.1,
     movingFlag: false,
@@ -33,32 +32,35 @@
   }
 
   fullpage.initAnimate = function(el, binding, vnode) {
-    var that = fullpage
-    var vm = vnode.context,
-      animateVal = binding.value;
+    var that = fullpage,
+        vm = vnode.context,
+        aminate = binding.value;
     el.style.opacity = '0'
     vm.$on('toogle_animate', function (curIndex) {
       var curPage = +el.parentNode.getAttribute('data-id')
       if (curIndex === curPage) {
-        el.style.opacity = '1'
-        that.addAnimated(el, animateVal)
+        that.addAnimated(el, aminate)
       } else {
         el.style.opacity = '0'
-        that.removeAnimated(el, animateVal)
+        that.removeAnimated(el, aminate)
       }
     })
   }
 
   fullpage.addAnimated = function(el, animate) {
+    var delay = animate.delay || 0
     el.classList.add('animated')
-    el.classList.add(animate)
+    window.setTimeout(function() {
+      el.style.opacity = '1'
+      el.classList.add(animate.value)
+    }, delay)
   }
 
   fullpage.removeAnimated = function(el, animate) {
     el.classList.forEach(function(item) {
       if (item.indexOf('animated') !== -1) {
         el.classList.remove(item)
-        el.classList.remove(animate)
+        el.classList.remove(animate.value)
       }
     })
   }

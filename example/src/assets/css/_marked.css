@@ -35,7 +35,7 @@
 .hljs-symbol,
 .hljs-bullet,
 .hljs-attribute {
-  color: #0086b3;
+  color: #fcc28c;
 }
 
 .hljs-section,
@@ -44,7 +44,7 @@
 }
 
 .hljs-tag {
-  color: #333333;
+  color: #63a35c;
 }
 
 .hljs-title,
@@ -53,7 +53,7 @@
 .hljs-selector-class,
 .hljs-selector-attr,
 .hljs-selector-pseudo {
-  color: #795da3;
+  color: #fcc28c;
 }
 
 .hljs-addition {

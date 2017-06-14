@@ -2,13 +2,10 @@
 实现移动端的单页滚动效果,基于vue.js,目前只支持vue2.0及以上版本
 
 ## 指令
-#### v-fullpage
+## v-fullpage
 初始化``fullpage``需要的指令，需要放在``page-wp``容器上面
 
-#### v-animate
-可以通过该指令为元素添加动画。
-
-## 参数
+### vue-fullpage指令的值
 fullpage支持无参数的调用，每个参数都会有默认值，如果想实现自定义的功能，可以使用自定义参数。一个典型的自定义参数如下：
 ```
 opts: {
@@ -53,3 +50,99 @@ opts: {
 #### afterChange
 当页面滑动到下一页并且过了``duration``这个时间段后触发
 包含两个参数``prev``和``next``，指当前页面和滑动后页面的index
+
+## v-animate
+可以通过该指令为元素添加动画。
+
+### v-animate指令的值
+
+#### 下面是一个典型的自定义属性
+```js
+{
+	value:'bounceInLeft',
+	delay: 0
+}
+```
+#### value
+这个属性是一个元素的动画类型, 它的值取决于[animate.css](https://daneden.github.io/animate.css/)
+你需要添加以下的class中的一个为这个属性的值：
+- bounce
+- flash
+- pulse
+- rubberBand
+- shake
+- headShake
+- swing
+- tada
+- wobble
+- jello
+- bounceIn
+- bounceInDown
+- bounceInLeft
+- bounceInRight
+- bounceInUp
+- bounceOut
+- bounceOutDown
+- bounceOutLeft
+- bounceOutRight
+- bounceOutUp
+- fadeIn
+- fadeInDown
+- fadeInDownBig
+- fadeInLeft
+- fadeInLeftBig
+- fadeInRight
+- fadeInRightBig
+- fadeInUp
+- fadeInUpBig
+- fadeOut
+- fadeOutDown
+- fadeOutDownBig
+- fadeOutLeft
+- fadeOutLeftBig
+- fadeOutRight
+- fadeOutRightBig
+- fadeOutUp
+- fadeOutUpBig
+- flipInX
+- flipInY
+- flipOutX
+- flipOutY
+- lightSpeedIn
+- lightSpeedOut
+- rotateIn
+- rotateInDownLeft
+- rotateInDownRight
+- rotateInUpLeft
+- rotateInUpRight
+- rotateOut
+- rotateOutDownLeft
+- rotateOutDownRight
+- rotateOutUpLeft
+- rotateOutUpRight
+- hinge
+- jackInTheBox
+- rollIn
+- rollOut
+- zoomIn
+- zoomInDown
+- zoomInLeft
+- zoomInRight
+- zoomInUp
+- zoomOut
+- zoomOutDown
+- zoomOutLeft
+- zoomOutRight
+- zoomOutUp
+- slideInDown
+- slideInLeft
+- slideInRight
+- slideInUp
+- slideOutDown
+- slideOutLeft
+- slideOutRight
+- slideOutUp
+
+#### delay
+this property is used for animation delay, when a page has multiple animation elements you need to use it.
+

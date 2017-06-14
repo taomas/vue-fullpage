@@ -28,10 +28,15 @@
 }
 
 .page {
+	box-sizing: border-box;
   display: block;
 	position: relative;
 	width: 100%;
 	height: 100%;
 	flex-shrink: 0;
   overflow: hidden;
+}
+
+.animated {
+	opacity: 1;
 }

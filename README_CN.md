@@ -15,7 +15,7 @@ npm install vue-fullpage --save
 ```
 如果你想使用动画指令，请安装``animate.css``
 ```
-npm isntall animate.css --save
+npm install animate.css --save
 ```
 [animate.css用法](https://daneden.github.io/animate.css/)
 
@@ -43,13 +43,15 @@ Vue.use(VueFullpage)
 <div class="fullpage-container">
   <div class="fullpage-wp" v-fullpage="opts">
     <div class="page-1 page">
-      <p class="part-1" v-animate="'fadeInLeft'">VueFullpage</p>
+      <p class="part-1" v-animate="{value: 'bounceInLeft'}">vue-fullpage</p>
     </div>
     <div class="page-2 page">
-      <p class="part-2" v-animate="'fadeInRight'">VueFullpage</p>
+      <p class="part-2" v-animate="{value: 'bounceInRight'}">vue-fullpage</p>
     </div>
     <div class="page-3 page">
-      <p class="part-3" v-animate="'fadeInTop'">VueFullpage</p>
+      <p class="part-3" v-animate="{value: 'bounceInLeft', delay: 0}">vue-fullpage</p>
+      <p class="part-3" v-animate="{value: 'bounceInRight', delay: 600}">vue-fullpage</p>
+      <p class="part-3" v-animate="{value: 'zoomInDown', delay: 1200}">vue-fullpage</p>
     </div>
   </div>
 </div>
@@ -57,7 +59,7 @@ Vue.use(VueFullpage)
 
 **js**
 
-``opts``的值请参考[api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api_cn.md)
+``vue-fullpage``的值请参考[api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api_cn.md)
 ```js
 export default {
   data() {
@@ -65,11 +67,7 @@ export default {
       opts: {
         start: 0,
         dir: 'v',
-        duration: 500,
-        beforeChange: function (prev, next) {
-        },
-        afterChange: function (prev, next) {
-        }
+        duration: 500
       }
     }
   }
