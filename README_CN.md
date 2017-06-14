@@ -36,6 +36,7 @@ Vue.use(VueFullpage)
 #### app.vue
 
 **template**
+
 在``page-wp``容器上加``v-fullpage``指令,``v-fullpage``的值是fullpage的配置
 在``page``容器上加``v-animate``指令,``v-animate``的值是``animate.css``的动画效果
 ```html
@@ -55,7 +56,8 @@ Vue.use(VueFullpage)
 ```
 
 **js**
-``opts``的值请参考[api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api.md)
+
+``opts``的值请参考[api文档](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api_cn.md)
 ```js
 export default {
   data() {

@@ -3,17 +3,17 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import DocInstallation from '../components/doc-installation.vue'
+import Home from '../pages/home.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'installation',
-    component: DocInstallation
+    name: 'home',
+    component: Home
   },
   {
     path: '*',
-    redirect: '/installation'
+    redirect: '/'
   }
 ]
 

@@ -37,6 +37,7 @@ Vue.use(VueFullpage)
 #### app.vue
 
 **template**
+
 ``fullpage-container``、``fullpage-wp``、``page``are default class name.
 Add the ``v-fullpage`` command to the ``page-wp`` container.
 Add the ``v-animate`` command to the ``page`` container.
@@ -57,6 +58,8 @@ Add the ``v-animate`` command to the ``page`` container.
 ```
 
 **script**
+
+``opts`` value please refer to [api document](https://github.com/wendaosanshou/vue-fullpage/blob/master/doc/api.md)
 ```js
 export default {
   data() {
@@ -76,6 +79,7 @@ export default {
 ```
 
 **style**
+
 Set the ``page-container`` container's width and height what do you want, and the ``v-fullpage`` command will adapt the width and height of the parent element.
 The following settings allow the scrolling page to fill the full screen.
 ```

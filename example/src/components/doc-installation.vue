@@ -96,7 +96,7 @@ export default {
 ```
   </textarea>
 </marked>
-<a href="#" class="github-link">view on github</a>
+<a href="https://github.com/wendaosanshou/vue-fullpage" class="github-link">view on github</a>
 </div>
 </template>
 

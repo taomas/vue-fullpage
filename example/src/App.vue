@@ -1,12 +1,6 @@
 <template>
   <div class="app">
-    <div class="app-header ly-row-flex flex-middle">
-      <h1 class="header-name">vue-fullpage</h1>
-    </div>
-    <div class="app-content ly-row-flex flex-start">
-      <router-view></router-view>
-      <phone></phone>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
