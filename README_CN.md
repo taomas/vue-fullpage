@@ -5,6 +5,7 @@ README：[English Version](https://github.com/wendaosanshou/vue-fullpage/blob/ma
 
 ## 线上demo
 [http://vue.fecss.com/vue-fullpage/](http://vue.fecss.com/vue-fullpage/)
+[fiddle online demo](https://jsfiddle.net/wendaosanshou/4b6p5ujt/10/#)
 
 ## 功能概述
 实现了移动端的单页滚动效果，支持横向滚动和纵向滚动，支持animate.css里的所有动画指令
