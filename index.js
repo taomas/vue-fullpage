@@ -57,12 +57,9 @@
   }
 
   fullpage.removeAnimated = function(el, animate) {
-    el.classList.forEach(function(item) {
-      if (item.indexOf('animated') !== -1) {
-        el.classList.remove(item)
-        el.classList.remove(animate.value)
-      }
-    })
+    if (el.getAttribute('class').indexOf('animated') > -1) {
+      el.classList.remove(animate.value)
+    }
   }
 
   fullpage.assignOpts = function(option) {
