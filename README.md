@@ -7,8 +7,7 @@ README：[中文版](https://github.com/wendaosanshou/vue-fullpage/blob/master/R
 To achieve sigle-page scroll in mobile, support horizontal scroll and vertical scroll, support all the animation instructions of animate.css.
 
 ## Online demo
-[http://vue.fecss.com/vue-fullpage/](http://vue.fecss.com/vue-fullpage/)
-[fiddle online demo](https://jsfiddle.net/wendaosanshou/4b6p5ujt/10/#)
+here's a [online demo](http://vue.fecss.com/vue-fullpage/) and a [jsfiddle demo](https://jsfiddle.net/wendaosanshou/4b6p5ujt/10/#)
 
 ## Installation
 ```
