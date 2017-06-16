@@ -3,8 +3,10 @@ import TouchEmulator from 'hammer-touchemulator/touch-emulator.js'
 import App from './App.vue'
 import 'normalize.css'
 import 'animate.css'
-import '../../vue-fullpage.css'
-import VueFullpage from '../../index.js'
+import 'vue-fullpage/vue-fullpage.css'
+import VueFullpage from 'vue-fullpage'
+// import '../../vue-fullpage.css'
+// import VueFullpage from '../../index.js'
 import router from './route/index.js'
 
 Vue.use(VueFullpage)

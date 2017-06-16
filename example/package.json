@@ -17,7 +17,7 @@
     "marked": "^0.3.6",
     "normalize.css": "^7.0.0",
     "vue": "^2.2.6",
-    "vue-fullpage": "^1.1.1"
+    "vue-fullpage": "^2.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
