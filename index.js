@@ -185,15 +185,6 @@
       'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);');
   }
 
-  fullpage.loadStyle = (url) => {
-    var link = document.createElement('link')
-    link.ref = 'stylesheet'
-    link.type = 'text/css'
-    link.src = url
-    document.head.appendChild(script)
-  }
-
-
   if (typeof exports == 'object') {
     module.exports = fullpage
   } else if (typeof define == 'function' && define.amd) {

@@ -4,7 +4,7 @@ README：[English Version](https://github.com/wendaosanshou/vue-fullpage/blob/ma
 > 一个基于vue.js的页面滚动插件
 
 ## 线上demo
-这里有一个[线上的demo](http://vue.fecss.com/vue-fullpage/)和一个[jsfiddle demo](https://jsfiddle.net/wendaosanshou/4b6p5ujt/10/#)
+这里有一个[线上的demo](http://vue.fecss.com/vue-fullpage/)和一个[jsfiddle demo](https://jsfiddle.net/wendaosanshou/4b6p5ujt/12/)
 
 ## 功能概述
 实现了移动端的单页滚动效果，支持横向滚动和纵向滚动，支持animate.css里的所有动画指令
