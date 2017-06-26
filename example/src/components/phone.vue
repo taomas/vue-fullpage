@@ -2,7 +2,7 @@
   <div class="demo-wrapper">
     <div class="fullpage-container">
       <div class="fullpage-wp" v-fullpage="opts">
-        <div class="page-1 page">
+        <div class="page-1 page" v-if="isShowPage">
           <p class="part-1" v-animate="{value: 'bounceInLeft'}">vue-fullpage</p>
         </div>
         <div class="page-2 page">
@@ -23,6 +23,7 @@ export default {
   name: 'demo',
   data() {
     return {
+      isShowPage: true,
       opts: {
         start: 0,
         dir: 'v',
@@ -36,6 +37,11 @@ export default {
         }
       }
     }
+  },
+  created() {
+    setTimeout(() => {
+      this.isShowPage = false
+    }, 2000)
   }
 }
 </script>

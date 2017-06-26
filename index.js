@@ -19,6 +19,10 @@
       inserted: function(el, binding, vnode) {
         var opts = binding.value || {}
         that.init(el, opts, vnode)
+      },
+      componentUpdated: function(el, binding, vnode) {
+        var opts = binding.value || {}
+        that.init(el, opts, vnode)
       }
     })
 
