@@ -1,8 +1,7 @@
 <template>
-  <div class="demo-wrapper">
     <div class="fullpage-container">
       <div class="fullpage-wp" v-fullpage="opts">
-        <div class="page-1 page" v-if="isShowPage">
+        <div class="page-1 page">
           <p class="part-1" v-animate="{value: 'bounceInLeft'}">vue-fullpage</p>
         </div>
         <div class="page-2 page">
@@ -14,7 +13,6 @@
           <p class="part-3" v-animate="{value: 'zoomInDown', delay: 1200}">vue-fullpage</p>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -38,6 +36,11 @@ export default {
       }
     }
   },
+  methods: {
+    showMessage() {
+      alert(1)
+    }
+  },
   created() {
     setTimeout(() => {
       this.isShowPage = false
@@ -47,19 +50,8 @@ export default {
 </script>
 
 <style lang='postcss' scoped>
-.demo-wrapper {
-  box-sizing: border-box;
-  position: fixed;
-  top: 50%;
-  right: 30px;
-  width: 300px;
-  height: 556px;
-  padding: 80px 20px;
-  transform: translate(0, -50%);
-  background: url('../assets/image/phone_bg.png');
-  background-size: 100% 100%;
-}
-  
+
+
 .page p {
   display: block;
   text-align: center;

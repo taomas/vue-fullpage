@@ -129,6 +129,9 @@
       that.startX = e.targetTouches[0].pageX;
       that.startY = e.targetTouches[0].pageY;
     })
+    el.addEventListener('touchmove', function(e) {
+      e.preventDefault()
+    })
     el.addEventListener('touchend', function(e) {
       if (that.o.movingFlag) {
         return false;

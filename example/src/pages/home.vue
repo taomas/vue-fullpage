@@ -16,7 +16,7 @@ npm install vue-fullpage --save
         <p>if you want to use animate feature</p>
         <marked>
           <textarea class="mark-text">
-```js 
+```js
 npm install animate.css --save
 ```
           </textarea>
@@ -25,7 +25,7 @@ npm install animate.css --save
         <p>main.js</p>
         <marked>
           <textarea class="mark-text">
-```js 
+```js
 import 'animate.css'
 import 'vue-fullpage/vue-fullpage.css'
 import VueFullpage from 'vue-fullpage'
@@ -59,24 +59,24 @@ Vue.use(VueFullpage)
         <marked>
           <textarea class="mark-text">
 ```js
-export default { 
-  data() { 
-    return { 
-      opts: { 
-        start: 0, 
-        dir: 'v', 
+export default {
+  data() {
+    return {
+      opts: {
+        start: 0,
+        dir: 'v',
         loop: false
-      } 
-    } 
+      }
+    }
   }
-} 
+}
 ```
           </textarea>
         </marked>
         <p>style</p>
         <marked>
           <textarea class="mark-text">
-```css 
+```css
 .page p {
   display: block;
   text-align: center;
@@ -100,7 +100,9 @@ export default {
         </marked>
         <a href="https://github.com/wendaosanshou/vue-fullpage" target="_blank" class="github-link">view on github</a>
       </div>
-      <phone></phone>
+      <div class="demo-wrapper">
+        <phone></phone>
+      </div>
     </div>
   </div>
 </template>
@@ -164,6 +166,18 @@ export default {
     width: calc(100% - 350px);
     height: auto;
     padding: 0 30px;
+  }
+  .demo-wrapper {
+    box-sizing: border-box;
+    position: fixed;
+    top: 50%;
+    right: 30px;
+    width: 300px;
+    height: 556px;
+    padding: 80px 20px;
+    transform: translate(0, -50%);
+    background: url('../assets/image/phone_bg.png');
+    background-size: 100% 100%;
   }
   .github-link {
     display: block;
