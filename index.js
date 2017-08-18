@@ -9,6 +9,7 @@
     dir: 'v',
     der: 0.1,
     movingFlag: false,
+    preventWechat: false,
     beforeChange: function(data) {},
     afterChange: function(data) {}
   }
@@ -130,9 +131,6 @@
       that.startX = e.targetTouches[0].pageX
       that.startY = e.targetTouches[0].pageY
     })
-    el.addEventListener('touchmove', function(e) {
-      e.preventDefault()
-    })
     el.addEventListener('touchend', function(e) {
       if (that.o.movingFlag) {
         return false
@@ -154,6 +152,11 @@
         }
       }
     })
+    if (that.o.preventWechat) {
+      el.addEventListener('touchmove', function(e) {
+        e.preventDefault()
+      })
+    }
   }
 
   fullpage.moveTo = function (curIndex, anim) {

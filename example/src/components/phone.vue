@@ -2,7 +2,7 @@
     <div class="fullpage-container">
       <div class="fullpage-wp" v-fullpage="opts">
         <div class="page-1 page">
-          <p class="part-1" v-animate="{value: 'bounceInLeft'}">vue-fullpage</p>
+          <p class="part-1" v-animate="{value: 'bounceInLeft'}" @click="showMessage">vue-fullpage</p>
         </div>
         <div class="page-2 page">
           <p class="part-2" v-animate="{value: 'bounceInRight'}">vue-fullpage</p>
@@ -27,6 +27,7 @@ export default {
         dir: 'v',
         loop: false,
         duration: 500,
+        preventWechat: true,
         beforeChange: function (prev, next) {
           console.log('before', prev, next)
         },
@@ -38,7 +39,6 @@ export default {
   },
   methods: {
     showMessage() {
-      alert(1)
     }
   },
   created() {
