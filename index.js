@@ -10,6 +10,7 @@
     der: 0.1,
     movingFlag: false,
     preventWechat: false,
+    needInitAfterUpdated: false,
     beforeChange: function(data) {},
     afterChange: function(data) {}
   }
@@ -22,6 +23,9 @@
         that.init(el, opts, vnode)
       },
       componentUpdated: function (el, binding, vnode) {
+        if (!that.o.needInitAfterUpdated) {
+          return
+        }
         var opts = binding.value || {}
         that.init(el, opts, vnode)
       }
