@@ -46,7 +46,11 @@
     var aminate = binding.value
     el.style.opacity = '0'
     vm.$on('toogle_animate', function (curIndex) {
-      var curPage = +el.parentNode.getAttribute('data-id')
+      var parent = el.parentNode
+      while(parent.getAttribute('data-id') === null) {
+        parent = parent.parentNode
+      }
+      var curPage = +parent.getAttribute('data-id')
       if (curIndex === curPage) {
         that.addAnimated(el, aminate)
       } else {
@@ -66,7 +70,8 @@
   }
 
   fullpage.removeAnimated = function (el, animate) {
-    if (el.getAttribute('class').indexOf('animated') > -1) {
+    ar classes = el.getAttribute('class')
+    if (classes && classes.indexOf('animated') > -1) {
       el.classList.remove(animate.value)
     }
   }
