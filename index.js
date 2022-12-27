@@ -54,6 +54,9 @@
       if (curIndex === curPage) {
         that.addAnimated(el, aminate)
       } else {
+         if (el.setTimeout) {
+            clearTimeout(el.setTimeout)
+         }
         el.style.opacity = '0'
         that.removeAnimated(el, aminate)
       }
@@ -63,7 +66,7 @@
   fullpage.addAnimated = function (el, animate) {
     var delay = animate.delay || 0
     el.classList.add('animated')
-    window.setTimeout(function () {
+    el.setTimeout =window.setTimeout(function () {
       el.style.opacity = '1'
       el.classList.add(animate.value)
     }, delay)
